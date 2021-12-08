@@ -103,15 +103,15 @@ export class ListadoComponent implements OnInit {
 
   agregarAlCarrito(pelicula: string, precio: number) {
     this.cantidadPeliculas++
-
+    
     let agrupacionPeliselegidas = {
       titulo: pelicula,
       cantidad: this.cantidadPeliculas,
       precio: precio
     }
 
-    this.peliculaSeleccionadas.push(agrupacionPeliselegidas);
-    console.log("LISTADO ->", this.peliculaSeleccionadas)
+    this.peliculaSeleccionadas = [...this.peliculaSeleccionadas, agrupacionPeliselegidas];
+    
   }
 
 

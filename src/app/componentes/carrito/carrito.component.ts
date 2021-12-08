@@ -13,12 +13,12 @@ interface PeliculaSeleccionada {
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
-export class CarritoComponent implements OnInit, OnChanges {
+export class CarritoComponent implements OnInit {
 
-  @Input() productoSeleccionados: any[] = []; 
+  @Input() productoSeleccionados: PeliculaSeleccionada[] = []; 
 
   displayedColumns: string[] = ['pelicula', 'cantidad', 'precio'];
-  productos: PeliculaSeleccionada[];
+ 
 
   // transactions: any[] = [
   //   {item: 'Beach ball', cost: 4},
@@ -35,16 +35,16 @@ export class CarritoComponent implements OnInit, OnChanges {
     
   }
   constructor() {
-    this.productos = [];
+ 
   }
 
   ngOnInit(): void {
+    console.log("COMPON HIJO", this.productoSeleccionados)
 
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    this.productoSeleccionados = this.productos;
-    console.log(changes, this.productoSeleccionados)
-  }
+  // ngOnChanges(changes: SimpleChanges){
+  //   // this.productoSeleccionados = this.productos;
+  // }
 
 }

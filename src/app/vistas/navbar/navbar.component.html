@@ -1,7 +1,26 @@
 <div class="navcontainer"> 
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+  <div>
+  <button mat-button>Cine</button>
+  <mat-menu #aboveMenu="matMenu" yPosition="above">
+    <!-- <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button> -->
+  </mat-menu>
+  
+  <button mat-button>Series</button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+  </mat-menu>
 </div>
+
+<div>
+  <button mat-mini-fab aria-label="Example icon button with a plus one icon">
+    <mat-icon>shopping_cart</mat-icon>
+    <!-- circulo -->
+    <div></div>
+  </button>
+</div>
+
+</div>
+
+
+<!-- <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button> -->

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { HomeComponent } from './vistas/home/home.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -40,10 +40,11 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     RouterModule,
     MatTableModule,
-    MatDividerModule
-   
+    MatDividerModule,
+   MatIconModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
