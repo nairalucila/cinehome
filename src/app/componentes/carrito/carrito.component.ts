@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 
 
 interface PeliculaSeleccionada {
@@ -12,10 +13,9 @@ interface PeliculaSeleccionada {
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, OnChanges {
 
-  @Input()
-  productoSeleccionados!: PeliculaSeleccionada[]; 
+  @Input() productoSeleccionados: any[] = []; 
 
   displayedColumns: string[] = ['pelicula', 'cantidad', 'precio'];
   productos: PeliculaSeleccionada[];
@@ -39,9 +39,12 @@ export class CarritoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("LLEGA ALGO???", this.productoSeleccionados);
 
-    //console.log("LLEGA ALGO???", this.productoSeleccionados)
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    this.productoSeleccionados = this.productos;
+    console.log(changes, this.productoSeleccionados)
   }
 
 }

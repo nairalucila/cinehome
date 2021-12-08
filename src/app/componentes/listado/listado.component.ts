@@ -63,7 +63,38 @@ export class ListadoComponent implements OnInit {
       precio: 200,
       img: "https://www.caratulas.com/peliculas/peliculas/H/Hara_Kiri_Muerte_De_Un_Samurai/Hara_Kiri_Muerte_De_Un_Samurai-Cartel.jpg"
     },
-
+    {
+      titulo: "Frozen, el reino del Hielo",
+      genero: "animado",
+      año: 2011,
+      stock: 115,
+      precio: 200,
+      img: "https://www.caratulas.com/peliculas/peliculas/H/Hara_Kiri_Muerte_De_Un_Samurai/Hara_Kiri_Muerte_De_Un_Samurai-Cartel.jpg"
+    },
+    {
+      titulo: "Frozen, el reino del Hielo",
+      genero: "animado",
+      año: 2011,
+      stock: 115,
+      precio: 200,
+      img: "https://www.caratulas.com/peliculas/peliculas/H/Hara_Kiri_Muerte_De_Un_Samurai/Hara_Kiri_Muerte_De_Un_Samurai-Cartel.jpg"
+    },
+    {
+      titulo: "Frozen, el reino del Hielo",
+      genero: "animado",
+      año: 2011,
+      stock: 115,
+      precio: 200,
+      img: "https://www.caratulas.com/peliculas/peliculas/H/Hara_Kiri_Muerte_De_Un_Samurai/Hara_Kiri_Muerte_De_Un_Samurai-Cartel.jpg"
+    },
+    {
+      titulo: "Frozen, el reino del Hielo",
+      genero: "animado",
+      año: 2011,
+      stock: 115,
+      precio: 200,
+      img: "https://www.caratulas.com/peliculas/peliculas/H/Hara_Kiri_Muerte_De_Un_Samurai/Hara_Kiri_Muerte_De_Un_Samurai-Cartel.jpg"
+    },
     ]
   }
 
@@ -78,9 +109,9 @@ export class ListadoComponent implements OnInit {
       cantidad: this.cantidadPeliculas,
       precio: precio
     }
+
     this.peliculaSeleccionadas.push(agrupacionPeliselegidas);
-    console.log("LISTADIO ->", this.peliculaSeleccionadas)
-    return this.peliculaSeleccionadas;
+    console.log("LISTADO ->", this.peliculaSeleccionadas)
   }
 
 

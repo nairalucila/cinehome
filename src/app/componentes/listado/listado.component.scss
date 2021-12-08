@@ -1,18 +1,49 @@
-.example-card {
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap');
+
+.titulo-listado-principal{
+z-index: 1000;
+margin:auto;
+position: absolute;
+top: 20%;
+left: 10%;
+font-size: 100px;
+color:white
+}
+
+.contenedor-listado{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.contenedor-secundario{
+  margin: 1rem;
+}
+
+.mat-card {
     max-width: 400px;
+    background-color:#777d8f;
   }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+  .card-title{
+    font-size: 19px;
+    margin-bottom: 1rem;
   }
 
-  .contenedor-listado{
+  .precio-pelicula{
+    font-size: 20px;
+    text-align: right;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+  }
+
+  .stock-pelicula{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+  }
+
+  .contenedor-stock-precio{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-  .contenedor-secundario{
-    margin: 3rem;
+    justify-content: space-between;
+    color: lightgray;
   }

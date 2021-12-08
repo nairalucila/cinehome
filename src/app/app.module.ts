@@ -14,9 +14,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ListadoComponent } from './componentes/listado/listado.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import {MatButtonModule} from '@angular/material/button';
-import { Route } from '@angular/compiler/src/core';
 import { HomeComponent } from './vistas/home/home.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     MatButtonModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
