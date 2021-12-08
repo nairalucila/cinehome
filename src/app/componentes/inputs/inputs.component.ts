@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output , EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-inputs',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputsComponent implements OnInit {
 
-  constructor() { }
+  @Output() inputEmail = new EventEmitter<string>();
+
+  constructor() {
+  
+   }
 
   ngOnInit(): void {
+  }
+
+
+  enviarDatos(value: string) {
+    this.inputEmail.emit(value);
   }
 
 }

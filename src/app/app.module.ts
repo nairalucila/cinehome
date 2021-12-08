@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -11,13 +11,28 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ListadoComponent } from './componentes/listado/listado.component';
+import { CarritoComponent } from './componentes/carrito/carrito.component';
+import {MatButtonModule} from '@angular/material/button';
+import { Route } from '@angular/compiler/src/core';
+import { HomeComponent } from './vistas/home/home.component';
+
+
+const appRoutes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'peliculas', component: ListadoComponent},
+  {path:'', component: HomeComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    InputsComponent
+    InputsComponent,
+    ListadoComponent,
+    CarritoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +41,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatMenuModule,
     MatCardModule,
     MatInputModule, 
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,22 @@
+<div class="contenedor-listado">
+    <!-- For -->
+    <div class="contenedor-secundario" *ngFor="let pelicula of listaPeliculas">
+
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>{{pelicula.titulo}}</mat-card-title>
+
+            </mat-card-header>
+            <img mat-card-image src="{{pelicula.img}}">
+            <mat-card-content>
+                {{pelicula.precio}}
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="accent">Agregar al Carrito</button>
+            </mat-card-actions>
+        </mat-card>
+
+
+    </div>
+
+</div>
