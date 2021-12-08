@@ -18,12 +18,6 @@ import { Route } from '@angular/compiler/src/core';
 import { HomeComponent } from './vistas/home/home.component';
 
 
-const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'peliculas', component: ListadoComponent},
-  {path:'', component: HomeComponent}
-]
-
 @NgModule({
   declarations: [
     AppComponent,

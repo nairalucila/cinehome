@@ -12,7 +12,7 @@
                 {{pelicula.precio}}
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button color="accent">Agregar al Carrito</button>
+                <button mat-button color="accent" (click)="agregarAlCarrito(pelicula.titulo, pelicula.precio)">Agregar al Carrito</button>
             </mat-card-actions>
         </mat-card>
 
