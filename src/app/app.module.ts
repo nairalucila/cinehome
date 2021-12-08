@@ -16,7 +16,7 @@ import { CarritoComponent } from './componentes/carrito/carrito.component';
 import {MatButtonModule} from '@angular/material/button';
 import { Route } from '@angular/compiler/src/core';
 import { HomeComponent } from './vistas/home/home.component';
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { HomeComponent } from './vistas/home/home.component';
     MatInputModule, 
     MatFormFieldModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
