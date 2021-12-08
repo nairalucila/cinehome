@@ -1,3 +1,5 @@
+
+
 <div class="contenedor-listado">
     <!-- For -->
     <div class="contenedor-secundario" *ngFor="let pelicula of listaPeliculas">
@@ -16,7 +18,8 @@
             </mat-card-actions>
         </mat-card>
 
-
     </div>
+
+    <app-carrito [productoSeleccionados]="peliculaSeleccionadas"></app-carrito>
 
 </div>

@@ -11,6 +11,7 @@ interface Peliculas {
 
 interface PeliculaSeleccionada {
   titulo: string,
+  cantidad:number,
   precio: number,
 }
 
@@ -23,9 +24,11 @@ export class ListadoComponent implements OnInit {
 
   listaPeliculas: Peliculas[];
   cantidadPeliculas: number;
-  peliculaSeleccionadas: PeliculaSeleccionada[]
+  peliculaSeleccionadas: PeliculaSeleccionada[];
+  algo: string;
 
   constructor() {
+    this.algo="hola"
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
     this.listaPeliculas = [{
@@ -72,11 +75,13 @@ export class ListadoComponent implements OnInit {
 
     let agrupacionPeliselegidas = {
       titulo: pelicula,
+      cantidad: this.cantidadPeliculas,
       precio: precio
     }
     this.peliculaSeleccionadas.push(agrupacionPeliselegidas);
-    console.log(this.cantidadPeliculas, this.peliculaSeleccionadas);
+    console.log("LISTADIO ->", this.peliculaSeleccionadas)
     return this.peliculaSeleccionadas;
   }
+
 
 }
