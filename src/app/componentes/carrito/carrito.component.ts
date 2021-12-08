@@ -4,7 +4,7 @@ import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/cor
 
 interface PeliculaSeleccionada {
   titulo: string,
-  cantidad:number,
+  cantidad: number,
   precio: number,
 }
 
@@ -13,12 +13,12 @@ interface PeliculaSeleccionada {
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit, OnChanges {
 
-  @Input() productoSeleccionados: PeliculaSeleccionada[] = []; 
+  @Input() productoSeleccionados: PeliculaSeleccionada[] = [];
 
-  displayedColumns: string[] = ['pelicula', 'cantidad', 'precio'];
- 
+  displayedColumns: string[] = ['pelicula', 'cantidad', 'precio', 'eliminar'];
+
 
   // transactions: any[] = [
   //   {item: 'Beach ball', cost: 4},
@@ -32,19 +32,31 @@ export class CarritoComponent implements OnInit {
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     console.log("dmf")
-    
+
   }
   constructor() {
- 
+
   }
 
   ngOnInit(): void {
-    console.log("COMPON HIJO", this.productoSeleccionados)
+    // console.log("COMPON HIJO", typeof this.productoSeleccionados, this.productoSeleccionados)
+
 
   }
 
-  // ngOnChanges(changes: SimpleChanges){
-  //   // this.productoSeleccionados = this.productos;
-  // }
+  filtrarPeliculas() {
+// debugger
+//     const res = this.productoSeleccionados.filter((pelicula, i) => {
+//       debugger
+//       return this.productoSeleccionados.indexOf(pelicula) === i;
+//     })
+
+    // console.log(res);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.filtrarPeliculas();
+    //console.log("COMPON HIJO", typeof this.productoSeleccionados, this.productoSeleccionados)
+  }
 
 }

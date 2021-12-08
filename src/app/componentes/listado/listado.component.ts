@@ -11,7 +11,7 @@ interface Peliculas {
 
 interface PeliculaSeleccionada {
   titulo: string,
-  cantidad:number,
+  cantidad: number,
   precio: number,
 }
 
@@ -28,7 +28,7 @@ export class ListadoComponent implements OnInit {
   algo: string;
 
   constructor() {
-    this.algo="hola"
+    this.algo = "hola"
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
     this.listaPeliculas = [{
@@ -102,16 +102,36 @@ export class ListadoComponent implements OnInit {
   }
 
   agregarAlCarrito(pelicula: string, precio: number) {
-    this.cantidadPeliculas++
-    
-    let agrupacionPeliselegidas = {
-      titulo: pelicula,
-      cantidad: this.cantidadPeliculas,
-      precio: precio
+    /*/**
+     * 
+
+
+
+
+    lista de peliculas 
+    agrega una nueva a la lista y si ya existe la busca y le incrementa la cantidad
+
+    entonces 
+    buscas si el indice es -1
+      agrego en nuevo elemento a la lista
+    sino es asi
+      busco con ese indice el elemento que ya existe y le sumo 1 a la cantidad 
+     */
+  
+    let index = this.peliculaSeleccionadas.findIndex(peli => peli.titulo == pelicula );
+    if(index == -1) {
+      let agrupacionPeliselegidas = {
+        titulo: pelicula,
+        cantidad: 1,
+        precio: precio
+      }
+  
+      this.peliculaSeleccionadas = [...this.peliculaSeleccionadas, agrupacionPeliselegidas];
+
+    } else {
+      this.peliculaSeleccionadas[index].cantidad += 1;
     }
 
-    this.peliculaSeleccionadas = [...this.peliculaSeleccionadas, agrupacionPeliselegidas];
-    
   }
 
 
