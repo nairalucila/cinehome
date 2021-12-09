@@ -1,3 +1,7 @@
+.contenedor-carrito{
+  background-color: darkseagreen;
+}
+
 table {
     width: 80%;
     margin: auto;
@@ -6,4 +10,14 @@ table {
   
   tr.mat-footer-row {
     font-weight: bold;
+  }
+
+  .titulo-carrito{
+    padding-top: 4rem;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .tabla-carrito{
+    margin-bottom: 4rem;
   }

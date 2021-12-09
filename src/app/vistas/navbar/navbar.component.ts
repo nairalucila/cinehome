@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MatMenuModule} from '@angular/material/menu';
 
 
 @Component({
@@ -10,10 +9,17 @@ import {MatMenuModule} from '@angular/material/menu';
 export class NavbarComponent implements OnInit {
 
   constructor() { 
-   
+    
   }
 
   ngOnInit(): void {
   }
+  //Se tiene pensado que se abra como modal
+  
+  // openDialog() {
+  //   this.dialog.open(CarritoComponent);
+  // }
 
 }
+
+

@@ -1,5 +1,6 @@
-<div>
-  <table mat-table [dataSource]="productoSeleccionados" (ngModel)="producto">
+<div class="contenedor-carrito">
+  <h1 class="titulo-carrito">Carrito de Compras</h1>
+  <table mat-table [dataSource]="productoSeleccionados" (ngModel)="producto" class="tabla-carrito">
     <!-- PELICULA Column -->
     <ng-container matColumnDef="pelicula">
       <th mat-header-cell *matHeaderCellDef> Peliculas </th>

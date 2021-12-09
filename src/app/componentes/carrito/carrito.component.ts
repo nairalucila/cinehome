@@ -1,5 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 
 
@@ -35,23 +34,24 @@ export class CarritoComponent implements OnInit, OnChanges {
     console.log("dmf")
 
   }
+  //@Inject(MAT_DIALOG_DATA) public data: DialogData
   constructor() {
-this.producto = {} 
+    this.producto = {}
   }
 
   ngOnInit(): void {
-   
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
-   
+
   }
 
   eliminarPelicula(productoSelec: any) {
- console.log(productoSelec);
-  // this.productoSeleccionados.find(prod =>{
-  //logica para eliminar este objeto
-  // })
+    console.log(productoSelec);
+    // this.productoSeleccionados.find(prod =>{
+    //logica para eliminar este objeto
+    // })
 
   }
 }
