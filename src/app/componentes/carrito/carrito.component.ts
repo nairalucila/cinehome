@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 
 
+
 interface PeliculaSeleccionada {
   titulo: string,
   cantidad: number,
@@ -18,7 +19,7 @@ export class CarritoComponent implements OnInit, OnChanges {
   @Input() productoSeleccionados: PeliculaSeleccionada[] = [];
 
   displayedColumns: string[] = ['pelicula', 'cantidad', 'precio', 'eliminar'];
-
+  producto: object;
 
   // transactions: any[] = [
   //   {item: 'Beach ball', cost: 4},
@@ -35,28 +36,22 @@ export class CarritoComponent implements OnInit, OnChanges {
 
   }
   constructor() {
-
+this.producto = {} 
   }
 
   ngOnInit(): void {
-    // console.log("COMPON HIJO", typeof this.productoSeleccionados, this.productoSeleccionados)
-
-
-  }
-
-  filtrarPeliculas() {
-// debugger
-//     const res = this.productoSeleccionados.filter((pelicula, i) => {
-//       debugger
-//       return this.productoSeleccionados.indexOf(pelicula) === i;
-//     })
-
-    // console.log(res);
+   
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.filtrarPeliculas();
-    //console.log("COMPON HIJO", typeof this.productoSeleccionados, this.productoSeleccionados)
+   
   }
 
+  eliminarPelicula(productoSelec: any) {
+ console.log(productoSelec);
+  // this.productoSeleccionados.find(prod =>{
+  //logica para eliminar este objeto
+  // })
+
+  }
 }

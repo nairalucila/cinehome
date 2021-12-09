@@ -1,5 +1,5 @@
 <div>
-  <table mat-table [dataSource]="productoSeleccionados">
+  <table mat-table [dataSource]="productoSeleccionados" (ngModel)="producto">
     <!-- PELICULA Column -->
     <ng-container matColumnDef="pelicula">
       <th mat-header-cell *matHeaderCellDef> Peliculas </th>
@@ -30,7 +30,7 @@
     <ng-container matColumnDef="eliminar">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let producto"> 
-        <button mat-icon-button color="accent">
+        <button mat-icon-button (click)="eliminarPelicula(producto)" color="accent">
           <mat-icon>highlight_off</mat-icon>
         </button>
       </td>

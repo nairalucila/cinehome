@@ -103,11 +103,6 @@ export class ListadoComponent implements OnInit {
 
   agregarAlCarrito(pelicula: string, precio: number) {
     /*/**
-     * 
-
-
-
-
     lista de peliculas 
     agrega una nueva a la lista y si ya existe la busca y le incrementa la cantidad
 
@@ -118,16 +113,14 @@ export class ListadoComponent implements OnInit {
       busco con ese indice el elemento que ya existe y le sumo 1 a la cantidad 
      */
   
-    let index = this.peliculaSeleccionadas.findIndex(peli => peli.titulo == pelicula );
+    let index = this.peliculaSeleccionadas.findIndex(peli => peli.titulo == pelicula);
     if(index == -1) {
       let agrupacionPeliselegidas = {
         titulo: pelicula,
         cantidad: 1,
         precio: precio
       }
-  
       this.peliculaSeleccionadas = [...this.peliculaSeleccionadas, agrupacionPeliselegidas];
-
     } else {
       this.peliculaSeleccionadas[index].cantidad += 1;
     }
