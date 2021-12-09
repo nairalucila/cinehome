@@ -18,6 +18,7 @@ import { HomeComponent } from './vistas/home/home.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatTableModule,
     MatDividerModule,
-   MatIconModule
+   MatIconModule,
+   ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

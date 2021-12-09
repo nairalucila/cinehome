@@ -1,4 +1,4 @@
-import { Component, OnInit, Output , EventEmitter} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-inputs',
@@ -7,7 +7,8 @@ import { Component, OnInit, Output , EventEmitter} from '@angular/core';
 })
 export class InputsComponent implements OnInit {
 
-  @Output() inputEmail = new EventEmitter<string>();
+
+  
 
   constructor() {
   
@@ -18,7 +19,11 @@ export class InputsComponent implements OnInit {
 
 
   enviarDatos(value: string) {
-    this.inputEmail.emit(value);
+    
+  }
+
+  onSubmit(){
+    console.log("asa")
   }
 
 }

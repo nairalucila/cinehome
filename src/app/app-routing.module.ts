@@ -7,6 +7,8 @@ import { HomeComponent } from './vistas/home/home.component';
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'peliculas', component: ListadoComponent},
+  {path: 'autentificacion', component: LoginComponent},
+  {path: 'peliculas', component: ListadoComponent},
   {path:'', redirectTo: '/peliculas', pathMatch: 'full'} 
 ]
 

@@ -1,7 +1,20 @@
 <div>
-    <form (ngSubmit)="onSubmit()">
-
-    </form>
+    <h1>Ingrese su Usuario</h1>
 </div>
 
-<p>dskjs</p>
+<div class="container-form-login">
+
+    <form [formGroup]="loginForm">
+
+        
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="email" value="example@example.com" formControlName="email">
+
+            <!-- <span>Contraseña</span> -->
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput placeholder="contraseña" formControlName="contrasenia">
+    
+        <button mat-raised-button>Enviar</button>
+    </form>
+
+</div>
