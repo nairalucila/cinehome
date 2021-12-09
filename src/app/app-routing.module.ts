@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './componentes/auth/login/login.component';
+import { RegistroComponent } from './componentes/auth/registro/registro.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
-import { LoginComponent } from './componentes/login/login.component';
-import { HomeComponent } from './vistas/home/home.component';
 
 const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'peliculas', component: ListadoComponent},
-  {path: 'autentificacion', component: LoginComponent},
-  {path: 'peliculas', component: ListadoComponent},
-  {path:'', redirectTo: '/peliculas', pathMatch: 'full'} 
+
+  { path: 'peliculas', component: ListadoComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'peliculas', component: ListadoComponent },
+  { path: '', redirectTo: '/peliculas', pathMatch: 'full' }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
 
 
 

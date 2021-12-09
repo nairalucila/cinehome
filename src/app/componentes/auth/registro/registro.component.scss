@@ -1,0 +1,22 @@
+.contenedor-registro{
+    background-color: #72949b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   // background-color: cadetblue;
+
+    .formulario-registro{
+        margin-top: 8px;
+    }
+}
+
+.links-registro{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+
+    span{
+
+        font-size: 12px;
+    }
+}

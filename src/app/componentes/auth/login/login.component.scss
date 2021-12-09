@@ -1,0 +1,21 @@
+.contenedor-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: cadetblue;
+
+    .formulario-login{
+        margin-top: 8px;
+    }
+}
+
+.links-login{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+
+    span{
+
+        font-size: 12px;
+    }
+}
