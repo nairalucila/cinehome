@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -15,7 +16,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroComponent } from './componentes/auth/registro/registro.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
-import { InputsComponent } from './componentes/inputs/inputs.component';
+
 import { ListadoComponent } from './componentes/listado/listado.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { NavbarComponent } from './vistas/navbar/navbar.component';
@@ -24,13 +25,12 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    InputsComponent,
     ListadoComponent,
     CarritoComponent,
     HomeComponent,
     LoginComponent,
-    RegistroComponent
-  ],
+    RegistroComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,7 +45,7 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
     MatDividerModule,
    MatIconModule,
    MatDialogModule,
-  // ReactiveFormsModule
+  ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

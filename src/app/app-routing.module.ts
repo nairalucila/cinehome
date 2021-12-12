@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroComponent } from './componentes/auth/registro/registro.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
@@ -15,6 +16,10 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/peliculas', pathMatch: 'full' }
 ]
 
+// children: [{
+//   path: 'user/:name',
+//   component: User
+// }]
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]

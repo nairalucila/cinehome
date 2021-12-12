@@ -2,11 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: cadetblue;
+    background-color: #CDC8F7;
 
     .formulario-login{
         margin-top: 8px;
     }
+}
+.color-boton{
+    background-color: #42FF5C;
 }
 
 .links-login{
@@ -15,7 +18,9 @@
     margin-top: 12px;
 
     span{
-
-        font-size: 12px;
+        font-size: 14px;
+    }
+    .badge{
+        text-decoration: none;
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  tipoContrasenia: string;
+ 
+  loginForm = this.fBuilder.group({
+    email: ['', [ Validators.required, Validators.email]],
+    contrasenia: ['', Validators.required]
+  })
 
-  constructor() { }
+
+  constructor(private fBuilder: FormBuilder) {
+    this.tipoContrasenia = "password";
+
+  }
 
   ngOnInit(): void {
+  }
+
+  cambiarTipoContrasenia(event: any) {
+    console.log(event)
+    this.tipoContrasenia = "text";
+  }
+
+  onSubmit(){
+    console.log(this.loginForm.value);
   }
 
 }

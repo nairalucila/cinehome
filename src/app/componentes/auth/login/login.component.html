@@ -1,34 +1,39 @@
 <div class="contenedor-login">
 
-  <div>
+  <div style="padding-top: 2rem">
     <h1>Ingrese sus datos</h1>
   </div>
 
-  <form class="formulario-login">
+  <form class="formulario-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="email">
+        <input matInput placeholder="email" formControlName="email">
 
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
       </mat-form-field>
     </p>
+
+    <!-- Ver de cambiar el input -->
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input matInput placeholder="secreto">
+        <input matInput [type]="tipoContrasenia" formControlName="contrasenia">
 
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
+        <mat-icon (click)="cambiarTipoContrasenia($event)" matSuffix>visibility</mat-icon>
+        
       </mat-form-field>
     </p>
-    <button mat-raised-button color="primary">Enviar</button>
+    <button mat-raised-button type="submit" class="color-boton">Enviar</button>
   </form>
 
   <div class="links-login">
-    <span>No recuerda su contraseña?  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon></span>
-<span>Si no tiene cuenta, <a href="">Regístrese</a></span>  
+    <span>No recuerda su contraseña? 
+      <!-- <mat-icon class="icon-link" matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </span>
 
-</div>
+    <div style="display: flex; flex-direction: row; justify-content: space-between ;">
+      <span class="badge">Si no tiene cuenta </span> <a [routerLink]="['/registro']">Registrese
+      </a>
+    </div>
+  </div>
 </div>

@@ -15,43 +15,42 @@ interface PeliculaSeleccionada {
 })
 export class CarritoComponent implements OnInit, OnChanges {
 
-  @Input() productoSeleccionados: PeliculaSeleccionada[] = [];
+  @Input() productoSeleccionados: PeliculaSeleccionada[] = [
+      {titulo: 'Beach ball',  cantidad: 3, precio: 4},
+  ];
 
   displayedColumns: string[] = ['pelicula', 'cantidad', 'precio', 'eliminar'];
   producto: object;
+  productoCantidad: number;
 
   // transactions: any[] = [
-  //   {item: 'Beach ball', cost: 4},
-  //   {item: 'Towel', cost: 5},
-  //   {item: 'Frisbee', cost: 2},
-  //   {item: 'Sunscreen', cost: 4},
-  //   {item: 'Cooler', cost: 25},
-  //   {item: 'Swim suit', cost: 15},
-  // ];
+  //   {pelicula: 'Beach ball', cantidad: 1,precio: 4},
+//];
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     console.log("dmf")
-
   }
+  
   //@Inject(MAT_DIALOG_DATA) public data: DialogData
   constructor() {
     this.producto = {}
+    this.productoCantidad = this.productoSeleccionados[0].cantidad;
+
   }
 
   ngOnInit(): void {
-
+console.log(this.productoCantidad)
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
+    
+    
   }
 
   eliminarPelicula(productoSelec: any) {
     console.log(productoSelec);
-    // this.productoSeleccionados.find(prod =>{
-    //logica para eliminar este objeto
-    // })
+   
 
   }
 }
