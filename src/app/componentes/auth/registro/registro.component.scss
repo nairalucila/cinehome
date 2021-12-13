@@ -1,13 +1,22 @@
 .contenedor-registro{
-    background-color: #72949b;
+    background-color: #d9a1f5;
     display: flex;
     flex-direction: column;
     align-items: center;
-   // background-color: cadetblue;
+    padding-top:1.5rem;
 
     .formulario-registro{
         margin-top: 8px;
     }
+}
+
+.titulo-registro{
+    font-size: 25px;
+}
+
+.boton-registro{
+    background-color: #42FF5C;
+    margin-bottom: 2rem;
 }
 
 .links-registro{

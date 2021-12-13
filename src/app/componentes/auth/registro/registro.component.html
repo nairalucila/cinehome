@@ -1,68 +1,54 @@
 <div class="contenedor-registro">
 
-    <div>
-      <h1>Cree una cuenta</h1>
-    </div>
-  
-    <form class="formulario-registro">
-        <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre de Usuario</mat-label>
-              <input matInput placeholder="nombre de usuario">
-      
-              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-              <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </p>
-
-
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="email">
-  
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Telefono</mat-label>
-          <input matInput placeholder="telefono">
-  
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-      </p>
-  <p>
-
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="secreto">
-  
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Confirmar Contraseña</mat-label>
-          <input matInput placeholder="secretobis">
-  
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-      </p>
-
-
-
-      <button mat-raised-button color="primary">Enviar</button>
-    </form>
-  
-    <div class="links-registro">
-      <span>Si ya tiene una cuenta, <a href="">Ingrese</a></span>  
-  
+  <div>
+    <h1 class="titulo-registro">Cree una cuenta</h1>
   </div>
+
+  <form class="formulario-registro" [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre de Usuario</mat-label>
+        <input matInput placeholder="nombre de usuario" formControlName="nombreUsuario">
+
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="email" formControlName="email">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Telefono</mat-label>
+        <input matInput placeholder="telefono" formControlName="telefono">
+      </mat-form-field>
+    </p>
+    <p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="tipoContrasenia" formControlName="contrasenia">
+
+        <mat-icon matSuffix (click)="cambiarTipoContrasenia()">visibility</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirmar Contraseña</mat-label>
+        <input matInput [type]="tipoContrasenia" formControlName="confirmarContrasenia">
+        <mat-icon matSuffix (click)="cambiarTipoContrasenia()">visibility</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <button mat-raised-button class="boton-registro">Enviar</button>
+  </form>
+
+  <div style="display: flex; flex-direction: row; justify-content: space-between ;">
+    <span class="badge">Si ya tiene una cuenta </span> <a [routerLink]="['/login']">Ingrese
+    </a>
   </div>
+
+</div>

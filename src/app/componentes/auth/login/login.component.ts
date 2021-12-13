@@ -7,6 +7,11 @@ import { FormControl, FormBuilder, FormGroup, Validator, Validators } from '@ang
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  /**FALTA DESHABILITAR EL BOTON
+   * FALTA ARREGLAR EL BOTON DE VISIBILIDAD
+   */
+
   tipoContrasenia: string;
  
   loginForm = this.fBuilder.group({
