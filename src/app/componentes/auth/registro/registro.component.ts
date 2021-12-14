@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent implements OnInit, OnDestroy {
 
   /**FALTA DESHABILITAR EL BOTON
    * FALTA ARREGLAR EL BOTON DE VISIBILIDAD
@@ -15,7 +15,7 @@ export class RegistroComponent implements OnInit {
   tipoContrasenia: string;
 
   registroForm = this.fBuilder.group({
-    email: ['', [ Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     contrasenia: ['', Validators.required],
     nombreUsuario: ['', Validators.required],
     telefono: ['', Validators.required],
@@ -24,17 +24,22 @@ export class RegistroComponent implements OnInit {
 
   constructor(private fBuilder: FormBuilder) {
     this.tipoContrasenia = "password";
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  cambiarTipoContrasenia(){
+  cambiarTipoContrasenia() {
     this.tipoContrasenia = "text";
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.registroForm.value)
+  }
+
+  ngOnDestroy(): void {
+    this.registroForm.value
+
   }
 
 }
