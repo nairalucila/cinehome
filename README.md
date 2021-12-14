@@ -1,3 +1,10 @@
+# README FIRST
+Rutas que ud. puede visitar:
+Ruta / peliculas -> es la home
+Ruta / carrito -> es el carrito de compras
+Ruta / login
+Ruta / registro
+
 # Cinehome
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
