@@ -12,7 +12,10 @@ color:white
 .contenedor-listado{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  //background-color: #291033;
+  //background-color: rgb(26, 24, 31);
   background-color: rgb(26, 24, 31);
+  height: 100vw;
 }
 
 .contenedor-secundario{

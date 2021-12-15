@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,10 +17,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroComponent } from './componentes/auth/registro/registro.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
-
 import { ListadoComponent } from './componentes/listado/listado.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { NavbarComponent } from './vistas/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
+    
     ],
   imports: [
     BrowserModule,
@@ -45,7 +47,9 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
     MatDividerModule,
    MatIconModule,
    MatDialogModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  HttpClientModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MockapiService } from '../../servicios/mockapi.service';
 interface Peliculas {
   titulo: string,
   genero: string,
@@ -27,8 +27,9 @@ export class ListadoComponent implements OnInit {
   peliculaSeleccionadas: PeliculaSeleccionada[];
   algo: string;
 
-  constructor() {
+  constructor(private mockapi: MockapiService) {
     this.algo = "hola"
+   this.traerPeliculaService();
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
     this.listaPeliculas = [{
@@ -100,6 +101,12 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+traerPeliculaService(){
+  this.mockapi.obtenerPeliculas().subscribe((pelis: any)=>{
+    console.log(pelis);
+  })
+}
 
   agregarAlCarrito(pelicula: string, precio: number) {
     /*/**
