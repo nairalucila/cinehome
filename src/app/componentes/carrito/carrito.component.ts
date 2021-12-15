@@ -1,7 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-
-
 interface PeliculaSeleccionada {
   titulo: string,
   cantidad: number,
@@ -16,16 +14,13 @@ interface PeliculaSeleccionada {
 export class CarritoComponent implements OnInit, OnChanges {
 
   @Input() productoSeleccionados: PeliculaSeleccionada[] = [
-      {titulo: 'Beach ball',  cantidad: 3, precio: 4},
+      {titulo: 'Duro de matar',  cantidad: 1, precio: 219},
+      {titulo: 'Eternals',  cantidad: 1, precio: 319},
   ];
 
   displayedColumns: string[] = ['pelicula', 'cantidad', 'precio', 'eliminar'];
   producto: object;
   productoCantidad: number;
-
-  // transactions: any[] = [
-  //   {pelicula: 'Beach ball', cantidad: 1,precio: 4},
-//];
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {

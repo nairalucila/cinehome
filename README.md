@@ -1,7 +1,6 @@
 # README FIRST
 Rutas que ud. puede visitar:
 Ruta / peliculas -> es la home
-Ruta / carrito -> es el carrito de compras
 Ruta / login
 Ruta / registro
 
