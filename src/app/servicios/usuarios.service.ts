@@ -5,16 +5,17 @@ import { catchError, retry } from 'rxjs/operators';
 import { HttpParamsOptions } from '@angular/common/http';
 
 export interface Usuarios {
-  id: number,
-  nombreCompleto: string,
-  username: string,
+  id: 1,
+  nombreUsuario: string,
   email: string,
-  password: string
+  contrasenia: string,
+  telefono: string
 }
 
 export interface UsuarioLogin {
+  id: 1,
   email: string,
-  password: string
+  contrasenia: string
 }
 
 @Injectable({
@@ -22,10 +23,9 @@ export interface UsuarioLogin {
 })
 export class UsuariosService {
 
-  apiUrl: string = "api/login";
+  apiUrl: string = "https://61c5170cc003e70017b795a8.mockapi.io/users";
 
   constructor(private http: HttpClient) {
-    
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -43,14 +43,18 @@ export class UsuariosService {
       'Something bad happened; please try again later.');
   }
 
-  loguearUsuario(usuario: any):Observable<UsuarioLogin> {
-    return this.http.post<UsuarioLogin>(this.apiUrl, usuario)
-    
+  loguearUsuario(usuario: any) {
+    return this.http.post(this.apiUrl, usuario);
+
   }
-/**
- * .pipe(
-      catchError(this.handleError('Usuario', usuario))
-    );
- */
+
+  traerUsuario(endpoint: number) {
+    let urlConEndpoint = this.apiUrl + `/${endpoint}`;
+    return this.http.get(urlConEndpoint);
+  }
+
+  registrarUsuario(usuario: Usuarios): Observable<Usuarios> {
+    return this.http.post<Usuarios>(this.apiUrl, usuario)
+  }
 
 }

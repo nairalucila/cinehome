@@ -7,12 +7,13 @@ import { ListadoComponent } from './componentes/listado/listado.component';
 
 
 const appRoutes: Routes = [
-
-  { path: 'peliculas', component: ListadoComponent},
-  { path: '', redirectTo: 'peliculas', pathMatch: 'full'},
-  { path: 'carrito', component: CarritoComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  
+  { path: 'home', component: ListadoComponent},
+  { path: 'carrito', component: CarritoComponent },
+  
 
   
 ]
