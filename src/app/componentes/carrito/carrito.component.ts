@@ -1,10 +1,11 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { PedidosService, PeliculaSeleccionada } from 'src/app/servicios/pedidos.service';
 
-interface PeliculaSeleccionada {
-  titulo: string,
-  cantidad: number,
-  precio: number,
-}
+// interface PeliculaSeleccionada {
+//   titulo: string,
+//   cantidad: number,
+//   precio: number,
+// }
 
 @Component({
   selector: 'app-carrito',
@@ -28,24 +29,22 @@ export class CarritoComponent implements OnInit, OnChanges {
   }
   
   //@Inject(MAT_DIALOG_DATA) public data: DialogData
-  constructor() {
+  constructor( private pedidoService: PedidosService) {
     this.producto = {}
     this.productoCantidad = this.productoSeleccionados[0].cantidad;
 
   }
 
   ngOnInit(): void {
-console.log(this.productoCantidad)
+    this.pedidoService.pasarPedidos().subscribe(pelis => console.log("EN CARRITO-->", pelis))
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    
     
   }
 
   eliminarPelicula(productoSelec: any) {
     console.log(productoSelec);
-   
 
   }
 }

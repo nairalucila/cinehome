@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { PedidosService, PeliculaSeleccionada } from 'src/app/servicios/pedidos.service';
 import { MockapiService } from '../../servicios/mockapi.service';
 interface Peliculas {
   titulo: string,
@@ -9,25 +10,25 @@ interface Peliculas {
   img: string
 }
 
-interface PeliculaSeleccionada {
-  titulo: string,
-  cantidad: number,
-  precio: number,
-}
+// interface PeliculaSeleccionada {
+//   titulo: string,
+//   cantidad: number,
+//   precio: number,
+// }
 
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
   styleUrls: ['./listado.component.scss']
 })
-export class ListadoComponent implements OnInit {
+export class ListadoComponent implements OnInit, OnChanges {
 
   listaPeliculas: Peliculas[] = [];
   cantidadPeliculas: number;
   peliculaSeleccionadas: PeliculaSeleccionada[];
   algo: string;
 
-  constructor(private mockapi: MockapiService) {
+  constructor(private mockapi: MockapiService, private pedidoService: PedidosService) {
     this.algo = "hola"
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
@@ -36,6 +37,10 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.traerPeliculaService();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      
   }
 
 traerPeliculaService(){
@@ -64,10 +69,11 @@ traerPeliculaService(){
         precio: precio
       }
       this.peliculaSeleccionadas = [...this.peliculaSeleccionadas, agrupacionPeliselegidas];
+      this.pedidoService.enviarPedidosCarrito(this.peliculaSeleccionadas);
     } else {
       this.peliculaSeleccionadas[index].cantidad += 1;
+      this.pedidoService.enviarPedidosCarrito(this.peliculaSeleccionadas);
     }
-
   }
 
 
