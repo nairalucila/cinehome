@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-import { UsuarioLogin, UsuariosService, Usuarios } from 'src/app/servicios/usuarios.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioLogin, UsuariosService } from 'src/app/servicios/usuarios.service';
 
-/**FALTA DESHABILITAR EL BOTON
- * FALTA ARREGLAR EL BOTON DE VISIBILIDAD
- */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,21 +25,37 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
+
+  traerRegistroUsuarios(usuarioEntrante: any) {
+    this.usuarioService.traerUsuarios().subscribe((usuariosDB: any) => {
+
+      usuariosDB.forEach((element: any) => {
+
+        if (usuarioEntrante.email !== element.email) {
+          return false;
+        } else {
+
+          return true;
+        }
+
+      });
+
+
+    })
+  }
+
 
   verificarUsuarioenBaseDatos(usuarioIngresado: UsuarioLogin) {
     try {
       this.usuarioService.loguearUsuario(usuarioIngresado).subscribe(data => {
-        console.log("[Data]:", data);
-        if (data) {
-          this.estaLogueado = true;
-          let saveLS = this.estaLogueado.toString();
-          localStorage.setItem("LOG_", saveLS);
-          this.route.navigate(['/home']);
-        } else {
+        this.traerRegistroUsuarios(data);
 
-        }
-
+        this.estaLogueado = true;
+        let saveLS = this.estaLogueado.toString();
+        localStorage.setItem("LOG_", saveLS);
+        this.route.navigate(['/home']);
       })
     } catch (error) {
       console.log("Ups!", error);
@@ -55,12 +68,11 @@ export class LoginComponent implements OnInit {
   }
 
   cambiarTipoContrasenia(event: any) {
-    console.log(event)
+
     this.tipoContrasenia = "text";
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
     this.verificarUsuarioenBaseDatos(this.loginForm.value);
   }
 

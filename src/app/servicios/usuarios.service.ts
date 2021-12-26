@@ -1,8 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { HttpParamsOptions } from '@angular/common/http';
 
 export interface Usuarios {
   id: 1,
@@ -51,6 +49,10 @@ export class UsuariosService {
   traerUsuario(endpoint: number) {
     let urlConEndpoint = this.apiUrl + `/${endpoint}`;
     return this.http.get(urlConEndpoint);
+  }
+
+  traerUsuarios() {
+    return this.http.get(this.apiUrl);
   }
 
   registrarUsuario(usuario: Usuarios): Observable<Usuarios> {
