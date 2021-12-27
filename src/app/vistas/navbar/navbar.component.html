@@ -1,14 +1,20 @@
 <div class="navcontainer">
   <div class="menu-contenedor">
-    <button mat-button>Cine</button>
+
+    <button mat-button>Series</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+    </mat-menu>
+
+    <button mat-button>Categorías</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+    </mat-menu>
+
+    <button mat-button>Cuenta</button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
       <!-- <button mat-menu-item>Item 1</button>
     <button mat-menu-item>Item 2</button> -->
     </mat-menu>
 
-    <button mat-button>Series</button>
-    <mat-menu #belowMenu="matMenu" yPosition="below">
-    </mat-menu>
   </div>
 
   <div class="boton-carrito">

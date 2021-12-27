@@ -1,51 +1,75 @@
-
-.titulo-listado-principal{
-z-index: 1000;
-margin:auto;
-position: absolute;
-top: 20%;
-left: 10%;
-font-size: 100px;
-color:white
+.titulo-listado-principal {
+  z-index: 1000;
+  margin: auto;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  font-size: 100px;
+  color: white
 }
 
-.contenedor-listado{
+.contenedor-listado {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   //background-color: #291033;
   //background-color: rgb(26, 24, 31);
   background-color: rgb(26, 24, 31);
   height: 100vw;
+  overflow-x: inherit;
 }
 
-.contenedor-secundario{
+.contenedor-secundario {
   margin: 1rem;
 }
 
 .mat-card {
-    max-width: 400px;
+  max-width: 400px;
+  //background-color:#777d8f;
+}
+
+.card-title {
+  font-size: 19px;
+  margin-bottom: 1rem;
+}
+
+.precio-pelicula {
+  font-size: 20px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.stock-pelicula {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.contenedor-stock-precio {
+  display: flex;
+  justify-content: space-between;
+  color: lightgray;
+}
+
+@media (max-width: 600px) {
+  .contenedor-listado {
+    display: unset;
+    grid-template-columns: repeat(1, 1fr);
+    background-color: unset;
+    height: unset;
+    overflow-x: hidden;
+  }
+
+  .contenedor-secundario {
+    margin: 0.7rem;
+  }
+
+  .mat-card {
+    max-width: 300px;
     //background-color:#777d8f;
   }
-  
-  .card-title{
-    font-size: 19px;
-    margin-bottom: 1rem;
-  }
 
-  .precio-pelicula{
-    font-size: 20px;
-    text-align: right;
-    font-weight: 600;
+  .titulo-listado-principal {
+    font-size: 25px;
+    top: 18%;
   }
-
-  .stock-pelicula{
-    font-family: 'Oswald', sans-serif;
-    font-weight: 200;
-    font-size: 16px;
-  }
-
-  .contenedor-stock-precio{
-    display: flex;
-    justify-content: space-between;
-    color: lightgray;
-  }
+}

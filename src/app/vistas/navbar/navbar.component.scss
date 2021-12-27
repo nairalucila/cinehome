@@ -1,24 +1,43 @@
-.navcontainer{
-    background-color: black;
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-& button {
+.navcontainer {
+  background-color: black;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & button {
     font-size: 22px;
     margin-top: 10px;
-    color:white;
-   
-}
+    color: white;
 
-.menu-contenedor{
+  }
+
+  .menu-contenedor {
     margin-left: 12px;
     margin-top: 7px;
-}
-.boton-carrito{
- margin-right: 12px;;
- margin-top: 5px;
+  }
+
+  .boton-carrito {
+    margin-right: 12px;
+    ;
+    margin-top: 5px;
+  }
+
 }
 
+@media (max-width: 600px) {
+
+  .navcontainer {
+
+    button {
+      font-size: 18px;
+      margin-top: 12px;
     }
+
+    .menu-contenedor {
+      margin-left: 5px;
+    }
+
+    
+  }
+}

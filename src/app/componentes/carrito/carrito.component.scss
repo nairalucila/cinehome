@@ -26,3 +26,16 @@ table {
   .placeholder-cantidad{
     width: 50px;
   }
+
+  @media (max-width: 600px) {
+    table {
+      width: 88%;
+    }
+    .tabla-carrito{
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
+    .placeholder-cantidad{
+      width: 25px;
+    }
+  }
