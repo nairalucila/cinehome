@@ -12,17 +12,6 @@
       <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
     </ng-container>
 
-    <!-- CANTIDAD COLUMN -->
-    <ng-container matColumnDef="cantidad">
-      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-      <td mat-cell *matCellDef="let producto">
-        <input matInput type="number" #productoCantidad [placeholder]="producto.cantidad" class="placeholder-cantidad">
-        </td>
-
-      <!-- Total Footer -->
-      <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td> -->
-    </ng-container>
-
     <!-- PECIO COLUMN -->
     <ng-container matColumnDef="precio">
       <th mat-header-cell *matHeaderCellDef> Precio </th>

@@ -1,11 +1,10 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PedidosService, PeliculaSeleccionada } from 'src/app/servicios/pedidos.service';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
 
-// interface PeliculaSeleccionada {
-//   titulo: string,
-//   cantidad: number,
-//   precio: number,
-// }
+interface PeliculaSeleccionada {
+  titulo: string,
+  precio: number,
+}
 
 @Component({
   selector: 'app-carrito',
@@ -15,13 +14,12 @@ import { PedidosService, PeliculaSeleccionada } from 'src/app/servicios/pedidos.
 export class CarritoComponent implements OnInit, OnChanges {
 
   @Input() productoSeleccionados: PeliculaSeleccionada[] = [
-      {titulo: 'Duro de matar',  cantidad: 1, precio: 219},
-      {titulo: 'Eternals',  cantidad: 1, precio: 319},
+      {titulo: 'Duro de matar', precio: 219},
+      {titulo: 'Eternals',  precio: 319},
   ];
 
-  displayedColumns: string[] = ['pelicula', 'cantidad', 'precio', 'eliminar'];
+  displayedColumns: string[] = ['pelicula', 'precio', 'eliminar'];
   producto: object;
-  productoCantidad: number;
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {
@@ -31,7 +29,6 @@ export class CarritoComponent implements OnInit, OnChanges {
   //@Inject(MAT_DIALOG_DATA) public data: DialogData
   constructor( private pedidoService: PedidosService) {
     this.producto = {}
-    this.productoCantidad = this.productoSeleccionados[0].cantidad;
 
   }
 
