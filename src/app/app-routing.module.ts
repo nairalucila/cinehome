@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroComponent } from './componentes/auth/registro/registro.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { DetalleComponent } from './componentes/detalle/detalle.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
 
 
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
   
   { path: 'home', component: ListadoComponent},
   { path: 'carrito', component: CarritoComponent },
+  { path: 'detalle', component: DetalleComponent },
   
 
   

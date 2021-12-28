@@ -20,6 +20,7 @@ import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { NavbarComponent } from './vistas/navbar/navbar.component';
+import { DetalleComponent } from './componentes/detalle/detalle.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
+    DetalleComponent,
     
     ],
   imports: [

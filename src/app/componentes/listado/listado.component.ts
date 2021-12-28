@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { PedidosService } from 'src/app/servicios/pedidos.service';
 import { Genero, PeliculasService } from 'src/app/servicios/peliculas.service';
 import { MockapiService } from '../../servicios/mockapi.service';
@@ -42,7 +43,7 @@ export class ListadoComponent implements OnInit, OnChanges {
 
   img_url: string = "https://image.tmdb.org/t/p/w500";
 
-  constructor(private mockapi: MockapiService, private pedidoService: PedidosService, private peliculaService: PeliculasService,) {
+  constructor(private router: Router, private mockapi: MockapiService, private pedidoService: PedidosService, private peliculaService: PeliculasService,) {
     this.algo = "hola"
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
@@ -57,9 +58,7 @@ export class ListadoComponent implements OnInit, OnChanges {
    */
 
   ngOnInit(): void {
-    this.traerPeliculaService();
     this.peliculaService.obtenerPeliculas().subscribe((pelis: any) => {
-      //616
 
       pelis.results.map((peli: Peliculas) => {
 
@@ -75,18 +74,20 @@ export class ListadoComponent implements OnInit, OnChanges {
 
       });
    
-    })
+    });
+
+   // this.router.navigate(['/detalle', {id: 634649 }])
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
   }
 
-  traerPeliculaService() {
-    // this.mockapi.obtenerPeliculas().subscribe((pelis: any) => {
-    //   return this.listaPeliculas = pelis;
-    // })
+  detallePelicula(id = 634649){
+    //id: Peliculas
+    this.router.navigate(['/detalle', {id: 634649} ])
   }
+
 
   agregarAlCarrito(pelicula: string, precio: any) {
    /*Lo q se agrega al carrito es

@@ -13,8 +13,8 @@
                 </mat-card-header>
 
                 <mat-divider></mat-divider>
-
-                <img mat-card-image class="img-card-listado" src="{{img_url}}{{pelicula.poster_path}}">
+<!-- [routerLink]="['/detalle', pelicula.id]" -->
+                <img mat-card-image class="img-card-listado" src="{{img_url}}{{pelicula.poster_path}}" (click)="detallePelicula()">
 
                 <div class="contenedor-stock-precio">
                     <mat-card-content>

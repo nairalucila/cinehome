@@ -12,11 +12,13 @@ export interface Genero {
   providedIn: 'root'
 })
 export class PeliculasService {
-  generos_api_url: string = "https://api.themoviedb.org/3/genre/movie/list?api_key=18f44261f2bdf99e218a95146792d24d&language=es";
-
-
+  
   //API URL FALTA PAG 1
   url_api: string = "https://api.themoviedb.org/3/movie/popular?api_key=18f44261f2bdf99e218a95146792d24d&language=ES&page=1";
+
+  //API_MOVIE_PARAM
+  url_api_id: string = "https://api.themoviedb.org/3/movie/{movie_id}"
+  concat_apikey_lang: string = "?api_key=18f44261f2bdf99e218a95146792d24d&language=es-ES"
 
   //IMAGE URL
   img_url: string = "https://image.tmdb.org/t/p/w500/gSZyYEK5AfZuOFFjnVPUCLvdOD6.jpg"
@@ -30,6 +32,14 @@ export class PeliculasService {
   }
   
 
+  construirUrl(movieId: string){
+    return `https://api.themoviedb.org/3/movie/${movieId}?api_key=18f44261f2bdf99e218a95146792d24d&language=es-ES`;
+  }
+
+  obtenerPeliculaPorId(idPelicula: string){
+   let urlArmada =  this.construirUrl(idPelicula);
+    return this.http.get<any>(urlArmada);
+  }
 
   obtenerPeliculas() {
     return this.http.get<any>(this.url_api);
