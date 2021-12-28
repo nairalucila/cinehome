@@ -6,7 +6,7 @@
 <div class="contenedor-listado">
     <!-- For -->
     <div class="contenedor-secundario" *ngFor="let pelicula of listaPeliculas">
-            <mat-card class="mat-card">
+            <mat-card class="mat-card" >
                 <mat-card-header>
                     
                     <mat-card-title class="card-title"> {{pelicula.original_title}}</mat-card-title>
@@ -18,7 +18,6 @@
 
                 <div class="contenedor-stock-precio">
                     <mat-card-content>
-                        
                         <p class="precio-pelicula"> Votos {{pelicula.vote_average}} </p>
                     </mat-card-content>
 
