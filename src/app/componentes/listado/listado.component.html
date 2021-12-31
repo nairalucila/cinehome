@@ -14,7 +14,7 @@
 
                 <mat-divider></mat-divider>
 <!-- [routerLink]="['/detalle', pelicula.id]" -->
-                <img mat-card-image class="img-card-listado" src="{{img_url}}{{pelicula.poster_path}}" (click)="detallePelicula()">
+                <img mat-card-image class="img-card-listado" src="{{img_url}}{{pelicula.poster_path}}" (click)="detallePelicula()" class="imagen-peli">
                 <div class="contenedor-stock-precio">
                     <mat-card-content>
                         <p class="precio-pelicula"> Votos {{pelicula.vote_average}} </p>
