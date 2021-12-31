@@ -21,7 +21,7 @@ export class PeliculasService {
   concat_apikey_lang: string = "?api_key=18f44261f2bdf99e218a95146792d24d&language=es-ES"
 
   //IMAGE URL
-  img_url: string = "https://image.tmdb.org/t/p/w500/gSZyYEK5AfZuOFFjnVPUCLvdOD6.jpg"
+  img_url: string = "https://image.tmdb.org/t/p/w500/"
 
   idMovie: string = "";
   
