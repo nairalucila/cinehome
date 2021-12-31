@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PeliculasService } from 'src/app/servicios/peliculas.service';
+import { PeliculasService, Genero } from 'src/app/servicios/peliculas.service';
 
+interface Detalles {
+  original_title: string,
+  genres?: Genero[],
+  overview: string,
+  poster_path: string,
+  vote_average: number
+}
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -10,8 +17,15 @@ import { PeliculasService } from 'src/app/servicios/peliculas.service';
 export class DetalleComponent implements OnInit {
 
   id: string = "";
+  detalles: Detalles;
 
   constructor( private route: ActivatedRoute, private peliculaService: PeliculasService) { 
+    this.detalles = {
+    original_title: "title",
+    overview: "overview",
+    poster_path: "img/jpg",
+    vote_average: 0
+    }
   }
 
   ngOnInit(): void {
@@ -23,6 +37,13 @@ export class DetalleComponent implements OnInit {
 
     this.peliculaService.obtenerPeliculaPorId(this.id).subscribe(peli =>{
       console.log("Pelii->", peli)
+      this.detalles = {
+        original_title: peli.original_title,
+        genres: peli.genres[0].name,
+        overview: peli.overview,
+        poster_path: peli.poster_path,
+        vote_average: peli.vote_average
+      }
     })
 
     
