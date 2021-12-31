@@ -35,16 +35,20 @@ export class DetalleComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
-      console.log('ID-->', this.id);
     });
-    console.log(this.route);
 
     this.peliculaService.obtenerPeliculaPorId(this.id).subscribe((peli) => {
       console.log('Pelii->', peli);
+      let generos: Genero[] = [];
+      peli.genres.forEach((gen:any) => {
+        let g = gen.name;
+        generos.push(g)
+      });
+      
       this.detalles = {
         original_title: peli.original_title,
-        genres: peli.genres[0].name,
         overview: peli.overview,
+        genres: generos,
         poster_path: peli.poster_path,
         vote_average: peli.vote_average,
       };

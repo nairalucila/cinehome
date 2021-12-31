@@ -75,17 +75,14 @@ export class ListadoComponent implements OnInit, OnChanges {
       });
    
     });
-
-   // this.router.navigate(['/detalle', {id: 634649 }])
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
   }
 
-  detallePelicula(id = 634649){
-    //id: Peliculas
-    this.router.navigate(['/detalle', {id: 634649} ])
+  detallePelicula(id: number){
+    this.router.navigate(['/detalle', {id: id} ])
   }
 
 
