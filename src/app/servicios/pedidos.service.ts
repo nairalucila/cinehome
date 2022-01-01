@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 export interface Pedido {
-  titulo: string[],
+  titulo: string,
   precio: number,
   idUsuario:number,
   id?:number
@@ -33,7 +33,7 @@ export class PedidosService {
   }
 
 
-  registrarPedido(pedido: Pedido): Observable<Pedido> {
+  registrarPedido( pedido: Pedido): Observable<Pedido> {
     return this.http.post<Pedido>(this.apiUrl, pedido);
   }
 }

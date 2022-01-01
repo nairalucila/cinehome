@@ -19,6 +19,11 @@
   cursor:pointer;
 }
 
+.color-boton-listado{
+  background-color:#af1fcf;
+  color: white;
+}
+
 .contenedor-secundario {
   margin: 1rem;
 }
@@ -34,7 +39,7 @@
 }
 
 .precio-pelicula {
-  font-size: 20px;
+  font-size: 18px;
   text-align: right;
   font-weight: 600;
 }
