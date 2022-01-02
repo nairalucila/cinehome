@@ -19,18 +19,12 @@ export class PedidosService {
 
   constructor(private http: HttpClient) { }
 
-  traerPedidosBaseDatos() {
-    // let urlConEndpoint = this.apiUrl + `/${endpoint}`;
-    return this.http.get(this.apiUrl);
+  traerPedidosBaseDatos(idUsuario: number) {
+    let urlConEndpoint = this.apiUrl + "?idUsuario=" + idUsuario;
+
+    return this.http.get<Pedido[]>(urlConEndpoint);
   }
 
-  enviarPedidosCarrito(pedidos: Pedido[]) {
-    this.pedidoEntrante.next(pedidos);
-  };
-
-  pasarPedidos():Observable<Pedido[]>{
-    return this.pedidoEntrante.asObservable();
-  }
 
 
   registrarPedido( pedido: Pedido): Observable<Pedido> {
