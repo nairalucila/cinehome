@@ -20,19 +20,16 @@ interface PeliculaSeleccionada {
   styleUrls: ['./carrito.component.scss'],
 })
 export class CarritoComponent implements OnInit, OnChanges {
-  // @Input() productoSeleccionados: PeliculaSeleccionada[] = [
-  //   { titulo: 'Duro de matar', precio: 219 },
-  //   { titulo: 'Eternals', precio: 319 },
-  // ];
-
+  
   productoSeleccionados: PeliculaSeleccionada[] = [];
   displayedColumns: string[] = ['pelicula', 'precio', 'eliminar'];
   producto: object;
   idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
 
   /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    console.log('dmf');
+  obtenerMontoTotal() {
+        return this.productoSeleccionados.map(peli => peli.precio).reduce((acc, value) => acc + value, 0);
+    
   }
 
   constructor(private pedidoService: PedidosService) {
@@ -48,6 +45,7 @@ export class CarritoComponent implements OnInit, OnChanges {
       .traerPedidosBaseDatos(this.idUsuario)
       .subscribe((pedidos: PeliculaSeleccionada[]) => {
         this.productoSeleccionados = pedidos;
+        
       });
   }
 
