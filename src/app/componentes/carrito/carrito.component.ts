@@ -20,7 +20,6 @@ interface PeliculaSeleccionada {
   styleUrls: ['./carrito.component.scss'],
 })
 export class CarritoComponent implements OnInit, OnChanges {
-  
   productoSeleccionados: PeliculaSeleccionada[] = [];
   displayedColumns: string[] = ['pelicula', 'precio', 'eliminar'];
   producto: object;
@@ -28,8 +27,9 @@ export class CarritoComponent implements OnInit, OnChanges {
 
   /** Gets the total cost of all transactions. */
   obtenerMontoTotal() {
-        return this.productoSeleccionados.map(peli => peli.precio).reduce((acc, value) => acc + value, 0);
-    
+    return this.productoSeleccionados
+      .map((peli) => peli.precio)
+      .reduce((acc, value) => acc + value, 0);
   }
 
   constructor(private pedidoService: PedidosService) {
@@ -45,13 +45,19 @@ export class CarritoComponent implements OnInit, OnChanges {
       .traerPedidosBaseDatos(this.idUsuario)
       .subscribe((pedidos: PeliculaSeleccionada[]) => {
         this.productoSeleccionados = pedidos;
-        
       });
   }
 
   ngOnChanges(changes: SimpleChanges) {}
 
   eliminarPelicula(productoSelec: any) {
-    //  console.log(productoSelec);
+    console.log(productoSelec.id);
+    this.pedidoService.eliminarPedido(productoSelec.id).subscribe((info) => {
+      
+      this.productoSeleccionados = this.productoSeleccionados.filter((p) => {
+        return p.id !== info.id
+      })
+      console.log('Pedido eliminado con éxito');
+    });
   }
 }
