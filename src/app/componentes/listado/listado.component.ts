@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
 import { Genero, PeliculasService } from 'src/app/servicios/peliculas.service';
 import { MockapiService } from '../../servicios/mockapi.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 interface PeliculaSeleccionada {
   titulo: string;
   cantidad: number;
@@ -36,7 +36,6 @@ export class ListadoComponent implements OnInit, OnChanges {
   listaPeliculas: Peliculas[] = [];
   cantidadPeliculas: number;
   peliculaSeleccionadas: PeliculaSeleccionada[];
-  algo: string;
 
   nuevoPedido: Pedido;
 
@@ -50,9 +49,9 @@ export class ListadoComponent implements OnInit, OnChanges {
     private router: Router,
     private mockapi: MockapiService,
     private pedidoService: PedidosService,
-    private peliculaService: PeliculasService
+    private peliculaService: PeliculasService,
+    private _snackBar: MatSnackBar
   ) {
-    this.algo = 'hola';
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
     this.nuevoPedido = {
@@ -61,13 +60,6 @@ export class ListadoComponent implements OnInit, OnChanges {
       idUsuario: this.idUsuario,
     };
   }
-  /**
-       * en la imagen hace click y muestra detalle.
-    rputer link al otro componente.
-    y trae la descripcion de la otra api puntual.
-    o en la vista obtener ese parametro.
-    en ng init pedir detalles.
-   */
 
   ngOnInit(): void {
     this.peliculaService.obtenerPeliculas().subscribe((pelis: any) => {
@@ -101,12 +93,12 @@ export class ListadoComponent implements OnInit, OnChanges {
     this.pedidoService
       .registrarPedido(this.nuevoPedido)
       .subscribe((pedido: Pedido) => {
-
-        //AGREGAR TOASTS
+        
         if (pedido) {
-          console.log('pedido enviado');
+          this._snackBar.open("Película agregada con éxito", "", {duration: 1000});
+          
         } else {
-          throw new Error('Eror al generar su pedido');
+          this._snackBar.open("Error al agregar Película", "", {duration: 1000});
         }
       });
   }

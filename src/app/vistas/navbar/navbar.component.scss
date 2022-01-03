@@ -9,7 +9,6 @@
     font-size: 22px;
     margin-top: 10px;
     color: white;
-
   }
 
   .menu-contenedor {
@@ -20,18 +19,15 @@
   .boton-carrito {
     margin-right: 12px;
     margin-top: 5px;
-    // & button {
-
-    //   background-color: #;
-    // }
+    & button {
+      background-color: rgba(255, 255, 255, 255);
+      color: #9219a5;
+    }
   }
-
 }
 
 @media (max-width: 600px) {
-
   .navcontainer {
-
     button {
       font-size: 18px;
       margin-top: 12px;
@@ -40,7 +36,5 @@
     .menu-contenedor {
       margin-left: 5px;
     }
-
-    
   }
 }

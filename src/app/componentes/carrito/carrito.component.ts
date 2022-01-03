@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
-import { PeliculasService } from 'src/app/servicios/peliculas.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface PeliculaSeleccionada {
   titulo: string;
@@ -25,19 +25,21 @@ export class CarritoComponent implements OnInit, OnChanges {
   producto: object;
   idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
 
-  /** Gets the total cost of all transactions. */
-  obtenerMontoTotal() {
-    return this.productoSeleccionados
-      .map((peli) => peli.precio)
-      .reduce((acc, value) => acc + value, 0);
-  }
-
-  constructor(private pedidoService: PedidosService) {
+  constructor(
+    private pedidoService: PedidosService,
+    private _snackBar: MatSnackBar
+  ) {
     this.producto = {};
   }
 
   ngOnInit(): void {
     this.traerPedidosBaseDatos();
+  }
+  /** Gets the total cost of all transactions. */
+  obtenerMontoTotal() {
+    return this.productoSeleccionados
+      .map((peli) => peli.precio)
+      .reduce((acc, value) => acc + value, 0);
   }
 
   traerPedidosBaseDatos() {
@@ -51,13 +53,11 @@ export class CarritoComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {}
 
   eliminarPelicula(productoSelec: any) {
-    console.log(productoSelec.id);
     this.pedidoService.eliminarPedido(productoSelec.id).subscribe((info) => {
-      
       this.productoSeleccionados = this.productoSeleccionados.filter((p) => {
-        return p.id !== info.id
-      })
-      console.log('Pedido eliminado con éxito');
+        return p.id !== info.id;
+      });
+      this._snackBar.open("Pedido eliminado con éxito", "", {duration: 1000});
     });
   }
 }
