@@ -38,7 +38,8 @@ export class ListadoComponent implements OnInit, OnChanges {
   peliculaSeleccionadas: PeliculaSeleccionada[];
 
   nuevoPedido: Pedido;
-
+  seAgrego: boolean;
+  animacionCheck: boolean;
   listaPelicuasPopulares: any;
 
   img_url: string = 'https://image.tmdb.org/t/p/w500';
@@ -52,6 +53,8 @@ export class ListadoComponent implements OnInit, OnChanges {
     private peliculaService: PeliculasService,
     private _snackBar: MatSnackBar
   ) {
+    this.seAgrego = true;
+    this.animacionCheck = false;
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
     this.nuevoPedido = {
@@ -100,6 +103,9 @@ export class ListadoComponent implements OnInit, OnChanges {
         } else {
           this._snackBar.open("Error al agregar Película", "", {duration: 1000});
         }
+
+        // this.seAgrego = false;
+        // this.animacionCheck = true;
       });
   }
 }

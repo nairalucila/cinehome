@@ -28,13 +28,13 @@
                 <mat-divider></mat-divider>
 
                 <mat-card-actions class="organizar-contenedor">
-                    <button mat-raised-button class="color-boton-listado"
+                    <button *ngIf="seAgrego" mat-raised-button class="color-boton-listado"
                         (click)="agregarAlCarrito(pelicula.original_title, pelicula.precio)">Agregar
                         al Carrito</button>
 
-                        <mat-card-content>
-                            
-                        </mat-card-content>
+                    <mat-card-content *ngIf="animacionCheck">
+                       <mat-icon>task_alt</mat-icon> 
+                    </mat-card-content>
                 </mat-card-actions>
             </mat-card>
         <!-- VER DE AÑADIR UN BOTON PARA TRAER OTRA PAGINA DE PELICULAS O VER DE HACERLO EN EL SERVICIO -->
