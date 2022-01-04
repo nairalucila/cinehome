@@ -1,80 +1,111 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PedidosService, PeliculaSeleccionada } from 'src/app/servicios/pedidos.service';
+import { Router } from '@angular/router';
+import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
+import { Genero, PeliculasService } from 'src/app/servicios/peliculas.service';
 import { MockapiService } from '../../servicios/mockapi.service';
-interface Peliculas {
-  titulo: string,
-  genero: string,
-  año: number,
-  stock: number,
-  precio: number,
-  img: string
+import { MatSnackBar } from '@angular/material/snack-bar';
+interface PeliculaSeleccionada {
+  titulo: string;
+  cantidad: number;
+  precio: number;
 }
 
-// interface PeliculaSeleccionada {
-//   titulo: string,
-//   cantidad: number,
-//   precio: number,
-// }
+interface Peliculas {
+  genre_ids: Genero;
+  id: number;
+  original_title: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+  precio?: number;
+}
 
+interface PeliculasPrev {
+  page: number;
+  results: Peliculas;
+  total_pages: number;
+  total_results: number;
+}
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.scss']
+  styleUrls: ['./listado.component.scss'],
 })
 export class ListadoComponent implements OnInit, OnChanges {
-
   listaPeliculas: Peliculas[] = [];
   cantidadPeliculas: number;
   peliculaSeleccionadas: PeliculaSeleccionada[];
-  algo: string;
 
-  constructor(private mockapi: MockapiService, private pedidoService: PedidosService) {
-    this.algo = "hola"
+  nuevoPedido: Pedido;
+  seAgrego: boolean;
+  animacionCheck: boolean;
+  listaPelicuasPopulares: any;
+
+  img_url: string = 'https://image.tmdb.org/t/p/w500';
+
+  idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
+
+  constructor(
+    private router: Router,
+    private mockapi: MockapiService,
+    private pedidoService: PedidosService,
+    private peliculaService: PeliculasService,
+    private _snackBar: MatSnackBar
+  ) {
+    this.seAgrego = true;
+    this.animacionCheck = false;
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
-    
+    this.nuevoPedido = {
+      titulo: '',
+      precio: 0,
+      idUsuario: this.idUsuario,
+    };
   }
 
   ngOnInit(): void {
-    this.traerPeliculaService();
+    this.peliculaService.obtenerPeliculas().subscribe((pelis: any) => {
+      pelis.results.map((peli: Peliculas) => {
+        this.listaPeliculas.push({
+          id: peli.id,
+          original_title: peli.original_title,
+          vote_average: peli.vote_average,
+          poster_path: peli.poster_path,
+          genre_ids: peli.genre_ids,
+          vote_count: peli.vote_count,
+          precio: peli.vote_count > 1000 ? 1270 : 965,
+        });
+      });
+    });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-      
+  ngOnChanges(changes: SimpleChanges): void {}
+
+  detallePelicula(id: number) {
+    this.router.navigate(['/detalle', { id: id }]);
   }
 
-traerPeliculaService(){
-  this.mockapi.obtenerPeliculas().subscribe((pelis: any)=>{
-    return this.listaPeliculas = pelis;
-  })
-}
+  agregarAlCarrito(pelicula: string, precio: any) {
+    this.nuevoPedido = {
+      titulo: pelicula,
+      precio: precio,
+      idUsuario: this.idUsuario,
+    };
 
-  agregarAlCarrito(pelicula: string, precio: number) {
-    /*/**
-    lista de peliculas 
-    agrega una nueva a la lista y si ya existe la busca y le incrementa la cantidad
+    this.pedidoService
+      .registrarPedido(this.nuevoPedido)
+      .subscribe((pedido: Pedido) => {
+        
+        if (pedido) {
+          this._snackBar.open("Película agregada con éxito", "", {duration: 1000});
+          
+        } else {
+          this._snackBar.open("Error al agregar Película", "", {duration: 1000});
+        }
 
-    entonces 
-    buscas si el indice es -1
-      agrego en nuevo elemento a la lista
-    sino es asi
-      busco con ese indice el elemento que ya existe y le sumo 1 a la cantidad 
-     */
-  
-    let index = this.peliculaSeleccionadas.findIndex(peli => peli.titulo == pelicula);
-    if(index == -1) {
-      let agrupacionPeliselegidas = {
-        titulo: pelicula,
-        cantidad: 1,
-        precio: precio
-      }
-      this.peliculaSeleccionadas = [...this.peliculaSeleccionadas, agrupacionPeliselegidas];
-      this.pedidoService.enviarPedidosCarrito(this.peliculaSeleccionadas);
-    } else {
-      this.peliculaSeleccionadas[index].cantidad += 1;
-      this.pedidoService.enviarPedidosCarrito(this.peliculaSeleccionadas);
-    }
+        // this.seAgrego = false;
+        // this.animacionCheck = true;
+      });
   }
-
-
 }

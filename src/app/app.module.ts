@@ -20,7 +20,8 @@ import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { NavbarComponent } from './vistas/navbar/navbar.component';
-
+import { DetalleComponent } from './componentes/detalle/detalle.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
+    DetalleComponent,
     
     ],
   imports: [
@@ -48,7 +50,8 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
    MatIconModule,
    MatDialogModule,
   ReactiveFormsModule,
-  HttpClientModule
+  HttpClientModule,
+  MatSnackBarModule
   
   ],
   providers: [],

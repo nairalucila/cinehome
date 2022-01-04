@@ -1,7 +1,7 @@
 <div class="navcontainer">
   <div class="menu-contenedor">
 
-    <button mat-button>Series</button>
+    <button mat-button routerLink="/home"><mat-icon class="boton-home">home</mat-icon></button>
     <mat-menu #belowMenu="matMenu" yPosition="below">
     </mat-menu>
 
@@ -18,10 +18,10 @@
   </div>
 
   <div class="boton-carrito">
-    <button mat-mini-fab>
-      <!-- <a></a> -->
+    <button mat-mini-fab routerLink="/carrito">
+      
       <mat-icon>shopping_cart</mat-icon>
-      <!-- circulo -->
+      
       <div></div>
     </button>
   </div>

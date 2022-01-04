@@ -1,0 +1,25 @@
+<div class="contenedor-detalle">
+    <div class="back" routerLink="/home">
+        <mat-icon>arrow_back</mat-icon>
+        <h3>Atrás</h3>
+    </div>
+    <div class="contenedor-interno">
+        <div class="container-imagen-detalle">
+
+            <img [src]="pathImagen" [alt]="detalles.original_title" class="imagen-pelicula">
+
+        </div>
+        <!-- detalle -->
+        <div class="contenedor-desarrollo">
+            <h1>{{detalles.original_title}}</h1>
+            <h5>{{detalles.genres}}</h5>
+            <p>{{detalles.overview}}</p>
+
+            <div class="votos-detalles">
+                <h4>{{detalles.vote_average}}</h4>
+                <mat-icon>grade</mat-icon>
+
+            </div>
+        </div>
+    </div>
+</div>

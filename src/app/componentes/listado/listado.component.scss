@@ -11,11 +11,17 @@
 .contenedor-listado {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  //background-color: #291033;
-  //background-color: rgb(26, 24, 31);
   background-color: rgb(26, 24, 31);
-  height: 100vw;
   overflow-x: inherit;
+}
+
+.imagen-peli{
+  cursor:pointer;
+}
+
+.color-boton-listado{
+  background-color:#af1fcf;
+  color: white;
 }
 
 .contenedor-secundario {
@@ -33,7 +39,7 @@
 }
 
 .precio-pelicula {
-  font-size: 20px;
+  font-size: 18px;
   text-align: right;
   font-weight: 600;
 }
@@ -44,10 +50,21 @@
   font-size: 16px;
 }
 
+.organizar-contenedor{
+  display: flex;
+ // flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  mat-card-content{
+    margin-top: 1rem;
+  }
+}
+
 .contenedor-stock-precio {
   display: flex;
   justify-content: space-between;
-  color: lightgray;
+  color: rgb(49, 51, 66);
 }
 
 @media (max-width: 600px) {
@@ -62,6 +79,16 @@
   .contenedor-secundario {
     margin: 0.7rem;
   }
+  // .organizar-contenedor{
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-between;
+
+  //   mat-card-content{
+  //     position: relative;
+  //     top: 0.5rem;
+  //   }
+  // }
 
   .mat-card {
     max-width: 300px;

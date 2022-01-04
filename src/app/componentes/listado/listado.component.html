@@ -6,34 +6,37 @@
 <div class="contenedor-listado">
     <!-- For -->
     <div class="contenedor-secundario" *ngFor="let pelicula of listaPeliculas">
-            <mat-card class="mat-card">
+            <mat-card class="mat-card" >
                 <mat-card-header>
-                    <mat-card-title class="card-title">{{pelicula.titulo}}</mat-card-title>
+                    
+                    <mat-card-title class="card-title"> {{pelicula.original_title}}</mat-card-title>
                 </mat-card-header>
 
                 <mat-divider></mat-divider>
 
-                <img mat-card-image class="img-card-listado" src="{{pelicula.img}}">
-
+                <img mat-card-image class="img-card-listado" src="{{img_url}}{{pelicula.poster_path}}" (click)="detallePelicula(pelicula.id)" class="imagen-peli">
                 <div class="contenedor-stock-precio">
                     <mat-card-content>
-                        <p class="stock-pelicula"> Stock: {{pelicula.stock}} </p>
+                        <p class="precio-pelicula"> Votos {{pelicula.vote_average}} </p>
                     </mat-card-content>
 
                     <mat-card-content>
+                        
                         <p class="precio-pelicula"> $ {{pelicula.precio}} </p>
                     </mat-card-content>
                 </div>
                 <mat-divider></mat-divider>
 
-                <mat-card-actions>
-                    <button mat-raised-button color="accent"
-                        (click)="agregarAlCarrito(pelicula.titulo, pelicula.precio)">Agregar
+                <mat-card-actions class="organizar-contenedor">
+                    <button *ngIf="seAgrego" mat-raised-button class="color-boton-listado"
+                        (click)="agregarAlCarrito(pelicula.original_title, pelicula.precio)">Agregar
                         al Carrito</button>
+
+                    <mat-card-content *ngIf="animacionCheck">
+                       <mat-icon>task_alt</mat-icon> 
+                    </mat-card-content>
                 </mat-card-actions>
             </mat-card>
-        
+        <!-- VER DE AÑADIR UN BOTON PARA TRAER OTRA PAGINA DE PELICULAS O VER DE HACERLO EN EL SERVICIO -->
     </div>
 </div>
-
-<!-- <app-carrito [productoSeleccionados]="peliculaSeleccionadas"></app-carrito> -->
