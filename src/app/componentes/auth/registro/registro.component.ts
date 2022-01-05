@@ -12,9 +12,9 @@ export class RegistroComponent implements OnInit, OnDestroy {
   /**FALTA DESHABILITAR EL BOTON
    * FALTA ARREGLAR EL BOTON DE VISIBILIDAD
    */
+  caracterInvalid: boolean;
 
-  tipoContrasenia: string;
-
+  show: boolean;
   registroForm = this.fBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     contrasenia: ['', Validators.required],
@@ -24,16 +24,34 @@ export class RegistroComponent implements OnInit, OnDestroy {
   })
 
   constructor(private fBuilder: FormBuilder, private usuarioService: UsuariosService, private route: Router) {
-    this.tipoContrasenia = "password";
+    this.caracterInvalid = true;
+   
+    this.show = false;
   }
 
   ngOnInit(): void {
     //this.traerUsuarioBaseDato(1);
   }
 
-  cambiarTipoContrasenia(): void {
-    this.tipoContrasenia = "text";
+  cambiarTipoContrasenia() {
+    this.show = !this.show;
   }
+
+  detectarIngresoLetras(event: any){
+    var charCode = (event.which) ? event.which : event.keyCode;
+    // Sólo números 0-9
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      this.caracterInvalid = false;
+    
+      return false;
+    } else {
+      this.caracterInvalid = true;
+    
+      return true;
+    }
+  };
+
   //REGISTAR USUARIOS
   registrarUsuarios(nuevousuario: Usuarios) {
     try {

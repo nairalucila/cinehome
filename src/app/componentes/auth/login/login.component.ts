@@ -13,12 +13,13 @@ import {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  tipoContrasenia: string;
   estaLogueado: boolean;
-  loginForm = this.fBuilder.group({
+    loginForm = this.fBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     contrasenia: ['', Validators.required],
   });
+
+  show:boolean;
 
   constructor(
     private fBuilder: FormBuilder,
@@ -26,8 +27,9 @@ export class LoginComponent implements OnInit {
     private route: Router,
     private _snackBar: MatSnackBar
   ) {
-    this.tipoContrasenia = 'password';
+
     this.estaLogueado = false;
+    this.show = false;
   }
 
   ngOnInit(): void {}
@@ -53,8 +55,8 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  cambiarTipoContrasenia(event: any) {
-    this.tipoContrasenia = 'text';
+  cambiarTipoContrasenia() {
+    this.show = !this.show;
   }
 
   onSubmit() {

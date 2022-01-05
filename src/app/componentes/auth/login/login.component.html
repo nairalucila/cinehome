@@ -17,12 +17,13 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input matInput [type]="tipoContrasenia" formControlName="contrasenia">
+        <input matInput [type]="show ? 'text': 'password'" formControlName="contrasenia">
 
-        <mat-icon (click)="cambiarTipoContrasenia($event)" matSuffix>visibility</mat-icon>
+        <mat-icon (click)="cambiarTipoContrasenia()" matSuffix>visibility</mat-icon>
         
       </mat-form-field>
     </p>
+    
     <button mat-raised-button type="submit" class="color-boton">Enviar</button>
   </form>
 
