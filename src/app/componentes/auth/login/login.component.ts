@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import {
   UsuarioLogin,
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fBuilder: FormBuilder,
     private usuarioService: UsuariosService,
-    private route: Router
+    private route: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.tipoContrasenia = 'password';
     this.estaLogueado = false;
@@ -30,39 +32,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  traerRegistroUsuarios(usuarioEntrante: any) {
-    this.usuarioService.traerUsuarios().subscribe((usuariosDB: any) => {
-      usuariosDB.forEach((element: any) => {
-        if (usuarioEntrante.email !== element.email) {
-          return false;
+  verificarUsuarioenBaseDatos(usuarioIngresado: UsuarioLogin) {
+    this.usuarioService
+      .loguearUsuario2(usuarioIngresado.email)
+      .subscribe((usuario) => {
+        if (usuario[0]) {
+          if (usuarioIngresado.email === usuario[0].email) {
+            this.estaLogueado = true;
+            let saveLS = this.estaLogueado.toString();
+            localStorage.setItem('LOG_', saveLS);
+            localStorage.setItem('INITIALIZACION_IN', usuario[0].id.toString());
+            this.route.navigate(['/home']);
+          }
         } else {
-          return true;
+          this._snackBar.open('Porfavor regístrese', 'Error', {
+            duration: 2000,
+          });
+          this.route.navigate(['/registro']);
         }
       });
-    });
   }
-
-  verificarUsuarioenBaseDatos(usuarioIngresado: UsuarioLogin) {
-    try {
-      this.usuarioService.loguearUsuario(usuarioIngresado).subscribe((data: any) => {
-        console.log(data);
-        let id = data.id;
-        this.traerRegistroUsuarios(data);
-        
-
-        this.estaLogueado = true;
-        let saveLS = this.estaLogueado.toString();
-        localStorage.setItem('LOG_', saveLS);
-        localStorage.setItem('INITIALIZACION_IN', id);
-        this.route.navigate(['/home']);
-      });
-    } catch (error) {
-      console.log('Ups!', error);
-      return error;
-    }
-  }
-
-  verificarUsuarioFront() {}
 
   cambiarTipoContrasenia(event: any) {
     this.tipoContrasenia = 'text';
