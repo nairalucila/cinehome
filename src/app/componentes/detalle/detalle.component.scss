@@ -48,10 +48,52 @@
   }
 }
 
+//RECOMENDADOS
+.contenedor-recomendado{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: rgb(26, 24, 31);
+  overflow-x: inherit;
+}
+
+// //OK
+.contenedor-secundario{
+  margin: 1rem;
+}
+
+.imagen-peli{
+  cursor:pointer;
+}
+
+.mat-card {
+  max-width: 370px;
+  //background-color:#777d8f;
+}
+
+.card-title {
+  font-size: 19px;
+  margin-bottom: 1rem;
+}
+
+.precio-pelicula {
+  font-size: 18px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.stock-pelicula {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+
 .imagen-pelicula {
   width: 320px;
   margin: 16px 0px 0px 16px;
 }
+
+
 
  .back{
     display: flex;

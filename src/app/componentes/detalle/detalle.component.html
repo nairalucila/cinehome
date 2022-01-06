@@ -22,4 +22,42 @@
             </div>
         </div>
     </div>
+
+</div>
+
+<!-- RECOMENDADOS -->
+<div class="contenedor-recomendado">
+    <div class="contenedor-secundario" *ngFor="let pelicula of listaPeliculasRecomendas">
+        <mat-card class="mat-card">
+            <mat-card-header>
+                <mat-card-title class="card-title"> {{pelicula.original_title}}</mat-card-title>
+            </mat-card-header>
+
+            <mat-divider></mat-divider>
+            <!--  (click)="detallePelicula(pelicula.id)" -->
+            <img mat-card-image class="img-card-listado" src="{{img_url}}{{pelicula.poster_path}}" class="imagen-peli">
+            <div class="contenedor-stock-precio">
+                <mat-card-content>
+                    <p class="precio-pelicula"> Votos {{pelicula.vote_average}} </p>
+                </mat-card-content>
+
+                <mat-card-content>
+
+                    <p class="precio-pelicula"> $ {{pelicula.precio}} </p>
+                </mat-card-content>
+            </div>
+            <mat-divider></mat-divider>
+            <!-- 
+            <mat-card-actions class="organizar-contenedor">
+                <button *ngIf="seAgrego" mat-raised-button class="color-boton-listado"
+                    (click)="agregarAlCarrito(pelicula.original_title, pelicula.precio)">Agregar
+                    al Carrito</button>
+
+                <mat-card-content *ngIf="animacionCheck">
+                   <mat-icon>task_alt</mat-icon> 
+                </mat-card-content>
+            </mat-card-actions> -->
+        </mat-card>
+    </div>
+
 </div>

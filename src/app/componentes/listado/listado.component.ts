@@ -83,8 +83,7 @@ export class ListadoComponent implements OnInit, OnChanges {
       });
 
     }
-  
-  }
+  };
 
   ngOnChanges(changes: SimpleChanges): void {}
 

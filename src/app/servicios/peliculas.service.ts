@@ -36,13 +36,15 @@ export class PeliculasService {
   
   url_api_relacionados: string = "https://api.themoviedb.org/3/movie/" + this.idMovie + "/similar?api_key=18f44261f2bdf99e218a95146792d24d&language=es&page=1"
 
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(private http: HttpClient) {}
   
 
   construirUrl(movieId: string){
     return `https://api.themoviedb.org/3/movie/${movieId}?api_key=18f44261f2bdf99e218a95146792d24d&language=es-ES`;
+  }
+
+  construirUrlRecomendados(movieId: string){
+    return `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=18f44261f2bdf99e218a95146792d24d&language=es&page=1`;
   }
 
   obtenerPeliculaPorId(idPelicula: string){
@@ -54,12 +56,9 @@ export class PeliculasService {
       return this.http.get<Peliculas[]>(this.url_api + i);
   }
 
-  // obtenerPeliculas1() {
-  //   return this.http.get<any>(this.url_api);
-  // }
 
-  obtenerRelacionadas() {
-
-    return this.http.get<any>(this.url_api);
+  obtenerRelacionadas(movieId: string) {
+    let urlArmada =  this.construirUrlRecomendados(movieId);
+    return this.http.get<any>(urlArmada);
   }
 }
