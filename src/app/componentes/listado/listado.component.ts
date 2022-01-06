@@ -65,19 +65,25 @@ export class ListadoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.peliculaService.obtenerPeliculas().subscribe((pelis: any) => {
-      pelis.results.map((peli: Peliculas) => {
-        this.listaPeliculas.push({
-          id: peli.id,
-          original_title: peli.original_title,
-          vote_average: peli.vote_average,
-          poster_path: peli.poster_path,
-          genre_ids: peli.genre_ids,
-          vote_count: peli.vote_count,
-          precio: peli.vote_count > 1000 ? 1270 : 965,
+
+    for (let i = 0; i <= 5; i++) {
+   
+      this.peliculaService.obtenerPeliculas(i).subscribe((pelis: any) => {
+        pelis.results.map((peli: Peliculas) => {
+          this.listaPeliculas.push({
+            id: peli.id,
+            original_title: peli.original_title,
+            vote_average: peli.vote_average,
+            poster_path: peli.poster_path,
+            genre_ids: peli.genre_ids,
+            vote_count: peli.vote_count,
+            precio: peli.vote_count > 1000 ? 1270 : 965,
+          });
         });
       });
-    });
+
+    }
+  
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
