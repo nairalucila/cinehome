@@ -56,7 +56,24 @@
   overflow-x: inherit;
 }
 
-// //OK
+.titulo-recomendadas{
+  display: block;
+  text-align: center;
+  
+  margin-top: 2rem;
+
+  & h1{
+    font-size: 38px;
+    font-weight: 400;
+    color: whitesmoke;
+  }
+
+  & h3{
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(237, 223, 253);
+  }
+}
 .contenedor-secundario{
   margin: 1rem;
 }
