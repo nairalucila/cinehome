@@ -21,7 +21,8 @@ import { ListadoComponent } from './componentes/listado/listado.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { NavbarComponent } from './vistas/navbar/navbar.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { PerfilComponent } from './componentes/perfil/perfil.component'; 
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     LoginComponent,
     RegistroComponent,
     DetalleComponent,
+    PerfilComponent,
     
     ],
   imports: [

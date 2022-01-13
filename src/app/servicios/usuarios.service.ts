@@ -43,7 +43,11 @@ export class UsuariosService {
 
   loguearUsuario(usuario: any) {
     return this.http.post(this.apiUrl, usuario);
-
+  }
+  
+  loguearUsuario2(emailUsuario: string){
+    let urlConEndpoint = this.apiUrl + '?email=' + emailUsuario;
+    return this.http.get<Usuarios[]>(urlConEndpoint);
   }
 
   traerUsuario(endpoint: number) {

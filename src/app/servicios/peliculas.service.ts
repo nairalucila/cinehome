@@ -1,11 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-
-
 export interface Genero {
   id: number,
   nombre: string,
+}
+
+interface Peliculas {
+  genre_ids: Genero;
+  id: number;
+  original_title: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+  precio?: number;
 }
 
 @Injectable({
@@ -15,6 +22,8 @@ export class PeliculasService {
   
   //API URL FALTA PAG 1
   url_api: string = "https://api.themoviedb.org/3/movie/popular?api_key=18f44261f2bdf99e218a95146792d24d&language=ES&page=1";
+
+  url_api_test: string = "https://api.themoviedb.org/3/movie/popular?api_key=18f44261f2bdf99e218a95146792d24d&language=ES&page=";
 
   //API_MOVIE_PARAM
   url_api_id: string = "https://api.themoviedb.org/3/movie/{movie_id}"
@@ -27,13 +36,15 @@ export class PeliculasService {
   
   url_api_relacionados: string = "https://api.themoviedb.org/3/movie/" + this.idMovie + "/similar?api_key=18f44261f2bdf99e218a95146792d24d&language=es&page=1"
 
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(private http: HttpClient) {}
   
 
   construirUrl(movieId: string){
     return `https://api.themoviedb.org/3/movie/${movieId}?api_key=18f44261f2bdf99e218a95146792d24d&language=es-ES`;
+  }
+
+  construirUrlRecomendados(movieId: string){
+    return `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=18f44261f2bdf99e218a95146792d24d&language=es&page=1`;
   }
 
   obtenerPeliculaPorId(idPelicula: string){
@@ -41,12 +52,13 @@ export class PeliculasService {
     return this.http.get<any>(urlArmada);
   }
 
-  obtenerPeliculas() {
-    return this.http.get<any>(this.url_api);
+  obtenerPeliculas(i:number) {
+      return this.http.get<Peliculas[]>(this.url_api + i);
   }
 
-  obtenerRelacionadas() {
 
-    return this.http.get<any>(this.url_api);
+  obtenerRelacionadas(movieId: string) {
+    let urlArmada =  this.construirUrlRecomendados(movieId);
+    return this.http.get<any>(urlArmada);
   }
 }

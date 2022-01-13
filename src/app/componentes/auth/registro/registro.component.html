@@ -19,26 +19,32 @@
       </mat-form-field>
     </p>
 
+    <!-- Campo solo numeros -->
+    <div [hidden]="caracterInvalid">
+      <span style="color: red; margin-bottom: 1rem;">Sólo debe ingresar números</span>
+    </div>
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Telefono</mat-label>
-        <input matInput placeholder="telefono" formControlName="telefono">
+        <input (keypress)="detectarIngresoLetras($event)" matInput placeholder="telefono" formControlName="telefono">
       </mat-form-field>
     </p>
-    <p>
+
+
 
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input matInput [type]="tipoContrasenia" formControlName="contrasenia">
+        <input matInput [type]="show ? 'text' : 'password'" formControlName="contrasenia">
 
         <mat-icon matSuffix (click)="cambiarTipoContrasenia()">visibility</mat-icon>
       </mat-form-field>
     </p>
+
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Confirmar Contraseña</mat-label>
-        <input matInput [type]="tipoContrasenia" formControlName="confirmarContrasenia">
+        <input matInput [type]="show ? 'text' : 'password'" formControlName="confirmarContrasenia">
         <mat-icon matSuffix (click)="cambiarTipoContrasenia()">visibility</mat-icon>
       </mat-form-field>
     </p>
