@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import {
   UsuarioLogin,
   UsuariosService,
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private fBuilder: FormBuilder,
     private usuarioService: UsuariosService,
     private route: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private cookie: CookieService
   ) {
 
     this.estaLogueado = false;
@@ -33,6 +35,29 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  verificarUsuarioenBaseDatos2(usuarioIngresado: UsuarioLogin) {
+    this.usuarioService
+      .loguearUsuario(usuarioIngresado)
+      .subscribe((usuario: any) => {
+        console.log(usuario);
+        this.cookie.set('token', usuario.token );
+        // if (usuario[0]) {
+        //   if (usuarioIngresado.email === usuario[0].email) {
+        //     this.estaLogueado = true;
+        //     let saveLS = this.estaLogueado.toString();
+        //     localStorage.setItem('LOG_', saveLS);
+        //     localStorage.setItem('INITIALIZACION_IN', usuario[0].id.toString());
+        //     this.route.navigate(['/home']);
+        //   }
+        // } else {
+        //   this._snackBar.open('Porfavor regístrese', 'Error', {
+        //     duration: 2000,
+        //   });
+        //   this.route.navigate(['/registro']);
+        // }
+      });
+  }
 
   verificarUsuarioenBaseDatos(usuarioIngresado: UsuarioLogin) {
     this.usuarioService
@@ -60,6 +85,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.verificarUsuarioenBaseDatos(this.loginForm.value);
+    this.verificarUsuarioenBaseDatos2(this.loginForm.value);
   }
 }

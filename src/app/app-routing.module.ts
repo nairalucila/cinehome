@@ -5,14 +5,15 @@ import { RegistroComponent } from './componentes/auth/registro/registro.componen
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
+import { Guard1Guard } from './guard/guard1.guard';
 
 
 const appRoutes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full', },
   
-  { path: 'home', component: ListadoComponent},
+  { path: 'home', component: ListadoComponent, canActivate: [Guard1Guard]},
   { path: 'carrito', component: CarritoComponent },
   { path: 'detalle', component: DetalleComponent },
   
