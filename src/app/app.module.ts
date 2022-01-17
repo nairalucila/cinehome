@@ -24,6 +24,7 @@ import { DetalleComponent } from './componentes/detalle/detalle.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PerfilComponent } from './componentes/perfil/perfil.component'; 
 import { CookieService } from 'ngx-cookie-service';
+import { AdminComponent } from './componentes/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CookieService } from 'ngx-cookie-service';
     RegistroComponent,
     DetalleComponent,
     PerfilComponent,
+    AdminComponent,
     
     ],
   imports: [
