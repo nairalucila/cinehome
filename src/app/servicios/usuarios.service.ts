@@ -43,6 +43,11 @@ export class UsuariosService {
     return this.http.get(urlConEndpoint);
   }
 
+  traerUsuarios2() {
+    let apiGetsUsuario = this.apiUrlBack + "api/usuarios";
+    return this.http.get<Usuarios[]>(apiGetsUsuario);
+  }
+
   traerUsuarios() {
     return this.http.get(this.apiUrl);
   }
