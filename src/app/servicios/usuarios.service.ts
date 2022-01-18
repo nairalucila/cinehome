@@ -1,4 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
@@ -54,6 +55,11 @@ export class UsuariosService {
 
   registrarUsuario(usuario: Usuarios): Observable<Usuarios> {
     return this.http.post<Usuarios>(this.apiUrl, usuario)
+  }
+
+  eliminarUsuario(id: number){
+    let apiEliminar = this.apiUrlBack + 'api/usuarios/' + id;
+    return this.http.delete(apiEliminar);
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuariosService, Usuarios } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -12,28 +13,33 @@ export class AdminComponent implements OnInit {
   idForDelete = new FormControl('');
   esInputVisible: boolean;
   listaUsuarios: Usuarios[] = [];
-  constructor(private usuarioService: UsuariosService) {
+  constructor(private usuarioService: UsuariosService, private snackBar: MatSnackBar) {
     this.esInputVisible = false;
   }
 
   ngOnInit(): void {}
 
   traerListaUsuarios() {
-    this.usuarioService
-      .traerUsuarios2()
-      .subscribe((usuarios: Usuarios[]) => {
-        this.listaUsuarios = usuarios;
-        console.log(this.listaUsuarios);
-      })
+    this.usuarioService.traerUsuarios2().subscribe((usuarios: Usuarios[]) => {
+      this.listaUsuarios = usuarios;
+    });
   }
 
-  mostrarInput(){
-this.esInputVisible = true;
+  mostrarInput() {
+    this.esInputVisible = true;
   }
 
   sendValue(id: any) {
     this.esInputVisible = false;
-    console.log(id.value);
-    //traer servicio, ver de convertir a num o nose y pasar al serv para q elimine,
+    let idUSuario = Number(id.value);
+    
+   this.eliminarUsuario(idUSuario);
+  }
+
+  eliminarUsuario(id: number){
+
+  this.usuarioService.eliminarUsuario(id).subscribe((res) => {
+    this.snackBar.open("Usuario Eliminado con Éxito", "OK", {duration: 1200});
+    });
   }
 }

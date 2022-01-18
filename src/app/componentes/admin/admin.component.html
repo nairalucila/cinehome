@@ -7,12 +7,14 @@
     <!-- BORRAR USUARIOS -->
     <div class="panel-admin">
         <mat-form-field class="example-form-field" appearance="fill" *ngIf="esInputVisible">
-            <mat-label>Clearable input</mat-label>
+            <mat-label>Eliminar Usuario</mat-label>
 
             <input matInput type="text" [formControl]="idForDelete">
 
             <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="sendValue(idForDelete)">
-                <mat-icon>trash</mat-icon>
+                <mat-icon>
+                    delete_forever
+                </mat-icon>
             </button>
         </mat-form-field>
     </div>
