@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import {
   UsuarioLogin,
   UsuariosService,
+  Usuarios,
 } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -15,12 +16,12 @@ import {
 })
 export class LoginComponent implements OnInit {
   estaLogueado: boolean;
-    loginForm = this.fBuilder.group({
+  loginForm = this.fBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     contrasenia: ['', Validators.required],
   });
 
-  show:boolean;
+  show: boolean;
 
   constructor(
     private fBuilder: FormBuilder,
@@ -29,7 +30,6 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private cookie: CookieService
   ) {
-
     this.estaLogueado = false;
     this.show = false;
   }
@@ -40,29 +40,27 @@ export class LoginComponent implements OnInit {
     this.usuarioService
       .loguearUsuario(usuarioIngresado)
       .subscribe((usuario: any) => {
-        console.log(usuario);
-        this.cookie.set('token', usuario.token );
-        // if (usuario[0]) {
-        //   if (usuarioIngresado.email === usuario[0].email) {
-        //     this.estaLogueado = true;
-        //     let saveLS = this.estaLogueado.toString();
-        //     localStorage.setItem('LOG_', saveLS);
-        //     localStorage.setItem('INITIALIZACION_IN', usuario[0].id.toString());
-        //     this.route.navigate(['/home']);
-        //   }
-        // } else {
-        //   this._snackBar.open('Porfavor regístrese', 'Error', {
-        //     duration: 2000,
-        //   });
-        //   this.route.navigate(['/registro']);
-        // }
+        if (usuario) {
+          this.cookie.set('token', usuario.token);
+          localStorage.setItem('INITIALIZACION_IN', usuario._id);
+          this.estaLogueado = true;
+          let saveLS = this.estaLogueado.toString();
+          localStorage.setItem('LOG_', saveLS);
+          this.route.navigate(['/home']);
+        } else {
+          this._snackBar.open('Porfavor regístrese', 'Error', {
+            duration: 2000,
+          });
+          this.route.navigate(['/registro']);
+        }
       });
   }
 
   verificarUsuarioenBaseDatos(usuarioIngresado: UsuarioLogin) {
     this.usuarioService
-      .loguearUsuario2(usuarioIngresado.email)
-      .subscribe((usuario) => {
+      .loguearUsuario(usuarioIngresado.email)
+      .subscribe((usuario: any) => {
+        console.log(usuario);
         if (usuario[0]) {
           if (usuarioIngresado.email === usuario[0].email) {
             this.estaLogueado = true;

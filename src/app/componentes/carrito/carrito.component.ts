@@ -35,7 +35,7 @@ export class CarritoComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.traerPedidosBaseDatos();
   }
-  /** Gets the total cost of all transactions. */
+ 
   obtenerMontoTotal() {
     return this.productoSeleccionados
       .map((peli) => peli.precio)

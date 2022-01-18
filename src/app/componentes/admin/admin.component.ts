@@ -13,15 +13,27 @@ export class AdminComponent implements OnInit {
   idForDelete = new FormControl('');
   esInputVisible: boolean;
   listaUsuarios: Usuarios[] = [];
-  constructor(private usuarioService: UsuariosService, private snackBar: MatSnackBar) {
+  constructor(
+    private usuarioService: UsuariosService,
+    private snackBar: MatSnackBar
+  ) {
     this.esInputVisible = false;
   }
 
   ngOnInit(): void {}
 
   traerListaUsuarios() {
-    this.usuarioService.traerUsuarios2().subscribe((usuarios: Usuarios[]) => {
+    this.usuarioService.traerUsuarios().subscribe((usuarios: Usuarios[]) => {
+      console.log(usuarios);
       this.listaUsuarios = usuarios;
+
+      for (let i = 0; i < usuarios.length; i++) {
+        
+      this.listaUsuarios[i]._id = usuarios[i]._id;
+        
+      }
+
+
     });
   }
 
@@ -31,15 +43,17 @@ export class AdminComponent implements OnInit {
 
   sendValue(id: any) {
     this.esInputVisible = false;
-    let idUSuario = Number(id.value);
     
-   this.eliminarUsuario(idUSuario);
+    let idValor = id.value;
+    this.eliminarUsuario(idValor);
   }
 
-  eliminarUsuario(id: number){
-
-  this.usuarioService.eliminarUsuario(id).subscribe((res) => {
-    this.snackBar.open("Usuario Eliminado con Éxito", "OK", {duration: 1200});
+  eliminarUsuario(id: string) {
+    this.usuarioService.eliminarUsuario(id).subscribe((res) => {
+      
+      this.snackBar.open('Usuario Eliminado con Éxito', 'OK', {
+        duration: 1200,
+      });
     });
   }
 }

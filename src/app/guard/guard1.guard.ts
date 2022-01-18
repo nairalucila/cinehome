@@ -12,7 +12,13 @@ export class Guard1Guard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+      let idUsuarioLogueado = localStorage.getItem('INITIALIZACION_IN');
+      if(idUsuarioLogueado !== null || idUsuarioLogueado !== undefined ){
+        this.router.navigate(['/home']);
+        return false;
+      } else {
+        return true;
+      }
   }
   
 }
