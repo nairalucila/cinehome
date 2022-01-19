@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 export interface Pedido {
   titulo: string;
   precio: number;
-  idUsuario: string | null;
+  idUsuario: string;
   id?: number;
 }
 
@@ -27,10 +27,16 @@ export class PedidosService {
     return this.http.post<Pedido>(apiUrlPedidos, pedido);
   }
 
+  traerPedidosBaseDatos(idUsuario: string) {
+    let apiUrlPedidos = this.apiUrlBack + "pedidos/" + idUsuario;
+
+    return this.http.get<Pedido[]>(apiUrlPedidos);
+  }
+
 
   //APIS CON VIEJA URL
 
-  traerPedidosBaseDatos(idUsuario: number) {
+  traerPedidosBaseDatos2(idUsuario: number) {
     let urlConEndpoint = this.apiUrl + '?idUsuario=' + idUsuario;
 
     return this.http.get<Pedido[]>(urlConEndpoint);

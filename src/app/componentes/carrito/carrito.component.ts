@@ -7,29 +7,37 @@ import {
 } from '@angular/core';
 import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
-interface PeliculaSeleccionada {
-  titulo: string;
-  precio: number;
-  idUsuario: string | null;
-  id?: number;
-}
+// interface PeliculaSeleccionada {
+//   titulo: string;
+//   precio: number;
+//   idUsuario: string | null;
+//   id?: number;
+// }
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss'],
 })
 export class CarritoComponent implements OnInit, OnChanges {
-  productoSeleccionados: PeliculaSeleccionada[] = [];
+  productoSeleccionados: Pedido[] = [];
   displayedColumns: string[] = ['pelicula', 'precio', 'eliminar'];
   producto: object;
-  idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
+  idUsuario: string;
 
   constructor(
     private pedidoService: PedidosService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: Router
   ) {
     this.producto = {};
+    const idlocalstorage = localStorage.getItem('INITIALIZACION_IN')
+    if(!idlocalstorage) {
+      this.route.navigate(['/login']);
+      throw new Error('No se encuentra id')
+    }
+    this.idUsuario = idlocalstorage ;
   }
 
   ngOnInit(): void {

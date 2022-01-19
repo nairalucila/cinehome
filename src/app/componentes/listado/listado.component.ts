@@ -38,10 +38,9 @@ export class ListadoComponent implements OnInit, OnChanges {
 
   img_url: string = 'https://image.tmdb.org/t/p/w500';
 
-  idRegistroUsuario: string | null;
+  idRegistroUsuario: string;
 
- // idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
-  
+ 
   constructor(
     private router: Router,
     private pedidoService: PedidosService,
@@ -52,7 +51,15 @@ export class ListadoComponent implements OnInit, OnChanges {
     this.animacionCheck = false;
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
-    this.idRegistroUsuario = localStorage.getItem('INITIALIZACION_IN');
+
+    const idlocalstorage = localStorage.getItem('INITIALIZACION_IN')
+    if(!idlocalstorage) {
+    this.router.navigate(['/login']);
+      throw new Error('No se encuentra id')
+    }
+
+    this.idRegistroUsuario = idlocalstorage;
+
     this.nuevoPedido = {
       titulo: '',
       precio: 0,

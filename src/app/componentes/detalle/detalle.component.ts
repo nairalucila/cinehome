@@ -38,7 +38,9 @@ export class DetalleComponent implements OnInit {
   pathImagen: string = '';
   nuevoPedido: Pedido;
   listaPeliculasRecomendas: Peliculas[] = [];
-  idUsuario: string | null = localStorage.getItem('INITIALIZACION_IN');
+  idUsuario: string;
+
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +48,14 @@ export class DetalleComponent implements OnInit {
     private peliculaService: PeliculasService,
     private pedidoService: PedidosService
   ) {
+
+    const idlocalstorage = localStorage.getItem('INITIALIZACION_IN');
+    if(!idlocalstorage) {
+      this.router.navigate(['/login']);
+      throw new Error('No se encuentra id')
+    }
+    this.idUsuario = idlocalstorage;
+
     this.detalles = {
       original_title: 'title',
       overview: 'overview',
@@ -95,6 +105,7 @@ export class DetalleComponent implements OnInit {
     });
   }
 
+  //TERMINAR FUNCIONALIDAD
   agregarAlCarrito(pelicula: string, precio: any) {
     this.nuevoPedido = {
       titulo: pelicula,
