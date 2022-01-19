@@ -1,66 +1,66 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 export interface Usuarios {
-  id: 1,
-  nombreUsuario: string,
-  email: string,
-  contrasenia: string,
-  telefono: string
+  _id?: string;
+  nombreUsuario: string;
+  email: string;
+  contrasenia: string;
+  telefono: string;
+  rol: 'CLIENTE';
 }
 
 export interface UsuarioLogin {
-  id: 1,
-  email: string,
-  contrasenia: string
+  email: string;
+  contrasenia: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuariosService {
+  apiUrl: string = 'https://61c5170cc003e70017b795a8.mockapi.io/users';
+  apiUrlBack: string = 'http://localhost:3000/';
 
-  apiUrl: string = "https://61c5170cc003e70017b795a8.mockapi.io/users";
-
-  constructor(private http: HttpClient) {
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
+  constructor(private http: HttpClient) {}
 
   loguearUsuario(usuario: any) {
-    return this.http.post(this.apiUrl, usuario);
-  }
-  
-  loguearUsuario2(emailUsuario: string){
-    let urlConEndpoint = this.apiUrl + '?email=' + emailUsuario;
-    return this.http.get<Usuarios[]>(urlConEndpoint);
+    let loginApi = this.apiUrlBack + 'login';
+    return this.http.post(loginApi, usuario);
   }
 
-  traerUsuario(endpoint: number) {
-    let urlConEndpoint = this.apiUrl + `/${endpoint}`;
-    return this.http.get(urlConEndpoint);
-  }
+  // loguearUsuario2(emailUsuario: string){
+  //   let urlConEndpoint = this.apiUrl + '?email=' + emailUsuario;
+  //   return this.http.get<Usuarios[]>(urlConEndpoint);
+  // }
+
+  // traerUsuario(endpoint: number) {
+  //   let urlConEndpoint = this.apiUrl + `/${endpoint}`;
+  //   return this.http.get(urlConEndpoint);
+  // }
 
   traerUsuarios() {
-    return this.http.get(this.apiUrl);
+    let apiGetUsuario = this.apiUrlBack + 'api/usuarios';
+    return this.http.get<Usuarios[]>(apiGetUsuario);
   }
+
+  // traerUsuarios() {
+  //   return this.http.get(this.apiUrl);
+  // }
 
   registrarUsuario(usuario: Usuarios): Observable<Usuarios> {
-    return this.http.post<Usuarios>(this.apiUrl, usuario)
+    let apiRegistrar = this.apiUrlBack + 'usuarios';
+    return this.http.post<Usuarios>(apiRegistrar, usuario);
   }
 
+  // registrarUsuario(usuario: Usuarios): Observable<Usuarios> {
+  //   return this.http.post<Usuarios>(this.apiUrl, usuario)
+  // }
+
+  eliminarUsuario(id: string) {
+    let apiEliminar = this.apiUrlBack + 'api/usuarios/' + id;
+    return this.http.delete(apiEliminar);
+  }
 }

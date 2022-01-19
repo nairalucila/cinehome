@@ -1,0 +1,33 @@
+<div class="admin-container">
+    <!-- BOTONES -->
+    <div class="botones-seccion">
+        <button mat-raised-button color="warn" (click)="traerListaUsuarios()">Listar Usuarios</button>
+        <button mat-raised-button color="danger" (click)="mostrarInput()">Eliminar Usuario</button>
+    </div>
+    <!-- BORRAR USUARIOS -->
+    <div class="panel-admin">
+        <mat-form-field class="example-form-field" appearance="fill" *ngIf="esInputVisible">
+            <mat-label>Eliminar Usuario</mat-label>
+
+            <input matInput type="text" [formControl]="idForDelete">
+
+            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="sendValue(idForDelete)">
+                <mat-icon>
+                    delete_forever
+                </mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <!-- PANEL -->
+    <div *ngFor=" let usuario of listaUsuarios">
+        <!-- mini card -->
+        <mat-card class="mini-card-admin">
+            <div class="titulo-usuarios">
+                <h4>ID: {{usuario._id}}</h4>
+                <h2>{{usuario.nombreUsuario}}</h2>
+            </div>
+            <h3>{{usuario.email}}</h3>
+            <h3>{{usuario.telefono}}</h3>
+        </mat-card>
+    </div>
+</div>

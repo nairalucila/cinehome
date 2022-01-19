@@ -5,8 +5,8 @@ import { Observable, Subject } from 'rxjs';
 export interface Pedido {
   titulo: string;
   precio: number;
-  idUsuario: number;
-  id?: number;
+  idUsuario: string;
+  _id?: string;
 }
 
 @Injectable({
@@ -14,22 +14,44 @@ export interface Pedido {
 })
 export class PedidosService {
   apiUrl: string = 'https://61c5170cc003e70017b795a8.mockapi.io/pedidos';
+  apiUrlBack: string = 'http://localhost:3000/';
+
   private pedidoEntrante = new Subject<Pedido[]>();
 
   constructor(private http: HttpClient) {}
 
-  traerPedidosBaseDatos(idUsuario: number) {
-    let urlConEndpoint = this.apiUrl + '?idUsuario=' + idUsuario;
-
-    return this.http.get<Pedido[]>(urlConEndpoint);
-  }
+  //APIS CON NUEVA URL
 
   registrarPedido(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(this.apiUrl, pedido);
+    let apiUrlPedidos = this.apiUrlBack + "pedidos";
+    return this.http.post<Pedido>(apiUrlPedidos, pedido);
   }
 
-  eliminarPedido(idPedido: number) {
-    let apiUrlConId = this.apiUrl + '/' + idPedido;
-    return this.http.delete<Pedido>(apiUrlConId);
+  traerPedidosBaseDatos(idUsuario: string) {
+    let apiUrlPedidos = this.apiUrlBack + "pedidos/" + idUsuario;
+
+    return this.http.get<Pedido[]>(apiUrlPedidos);
   }
+
+  eliminarPedido(idPedido: string) {
+    let apiUrlPedidos = this.apiUrlBack + "pedidos/" + idPedido;
+    return this.http.delete<Pedido>(apiUrlPedidos);
+  }
+
+  //APIS CON VIEJA URL
+
+  // traerPedidosBaseDatos2(idUsuario: number) {
+  //   let urlConEndpoint = this.apiUrl + '?idUsuario=' + idUsuario;
+
+  //   return this.http.get<Pedido[]>(urlConEndpoint);
+  // }
+
+  // registrarPedido2(pedido: Pedido): Observable<Pedido> {
+  //   return this.http.post<Pedido>(this.apiUrl, pedido);
+  // }
+
+  // eliminarPedido2(idPedido: number) {
+  //   let apiUrlConId = this.apiUrl + '/' + idPedido;
+  //   return this.http.delete<Pedido>(apiUrlConId);
+  // }
 }

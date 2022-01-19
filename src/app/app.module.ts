@@ -23,6 +23,8 @@ import { NavbarComponent } from './vistas/navbar/navbar.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PerfilComponent } from './componentes/perfil/perfil.component'; 
+import { CookieService } from 'ngx-cookie-service';
+import { AdminComponent } from './componentes/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
     RegistroComponent,
     DetalleComponent,
     PerfilComponent,
+    AdminComponent,
     
     ],
   imports: [
@@ -56,7 +59,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
   MatSnackBarModule
   
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
  // schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
