@@ -55,10 +55,9 @@ export class RegistroComponent implements OnInit, OnDestroy {
     try {
       nuevousuario.rol = 'CLIENTE';
       this.usuarioService.registrarUsuario(nuevousuario).subscribe((data) => {
-        if (data) {
-          this.route.navigate(['/login']);
-        }
       });
+      this.route.navigate(['/login']);
+      
     } catch (error) {
       console.log('Ups!', error);
       return error;

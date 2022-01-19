@@ -38,7 +38,7 @@ export class DetalleComponent implements OnInit {
   pathImagen: string = '';
   nuevoPedido: Pedido;
   listaPeliculasRecomendas: Peliculas[] = [];
-  idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
+  idUsuario: string | null = localStorage.getItem('INITIALIZACION_IN');
 
   constructor(
     private route: ActivatedRoute,

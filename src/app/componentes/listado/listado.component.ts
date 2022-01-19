@@ -21,12 +21,6 @@ interface Peliculas {
   precio?: number;
 }
 
-interface PeliculasPrev {
-  page: number;
-  results: Peliculas;
-  total_pages: number;
-  total_results: number;
-}
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
@@ -44,11 +38,12 @@ export class ListadoComponent implements OnInit, OnChanges {
 
   img_url: string = 'https://image.tmdb.org/t/p/w500';
 
-  idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
+  idRegistroUsuario: string | null;
 
+ // idUsuario: number = Number(localStorage.getItem('INITIALIZACION_IN'));
+  
   constructor(
     private router: Router,
-    private mockapi: MockapiService,
     private pedidoService: PedidosService,
     private peliculaService: PeliculasService,
     private _snackBar: MatSnackBar
@@ -57,10 +52,11 @@ export class ListadoComponent implements OnInit, OnChanges {
     this.animacionCheck = false;
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
+    this.idRegistroUsuario = localStorage.getItem('INITIALIZACION_IN');
     this.nuevoPedido = {
       titulo: '',
       precio: 0,
-      idUsuario: this.idUsuario,
+      idUsuario: this.idRegistroUsuario,
     };
   }
 
@@ -95,7 +91,7 @@ export class ListadoComponent implements OnInit, OnChanges {
     this.nuevoPedido = {
       titulo: pelicula,
       precio: precio,
-      idUsuario: this.idUsuario,
+      idUsuario: this.idRegistroUsuario,
     };
 
     this.pedidoService
@@ -109,8 +105,6 @@ export class ListadoComponent implements OnInit, OnChanges {
           this._snackBar.open("Error al agregar Película", "", {duration: 1000});
         }
 
-        // this.seAgrego = false;
-        // this.animacionCheck = true;
-      });
+           });
   }
 }

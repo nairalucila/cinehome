@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 interface PeliculaSeleccionada {
   titulo: string;
   precio: number;
-  idUsuario: number;
+  idUsuario: string | null;
   id?: number;
 }
 @Component({
@@ -45,7 +45,7 @@ export class CarritoComponent implements OnInit, OnChanges {
   traerPedidosBaseDatos() {
     this.pedidoService
       .traerPedidosBaseDatos(this.idUsuario)
-      .subscribe((pedidos: PeliculaSeleccionada[]) => {
+      .subscribe((pedidos: Pedido[]) => {
         this.productoSeleccionados = pedidos;
       });
   }

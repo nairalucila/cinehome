@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['/registro']);
         }
       });
+
+      
   }
 
   verificarUsuarioenBaseDatos(usuarioIngresado: UsuarioLogin) {
