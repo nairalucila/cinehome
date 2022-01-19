@@ -61,11 +61,13 @@ export class CarritoComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {}
 
   eliminarPelicula(productoSelec: any) {
-    this.pedidoService.eliminarPedido(productoSelec.id).subscribe((info) => {
+    
+    this.pedidoService.eliminarPedido(productoSelec._id).subscribe((info) => {
+            
       this.productoSeleccionados = this.productoSeleccionados.filter((p) => {
-        return p.id !== info.id;
+                return p._id !== productoSelec._id;
       });
-      this._snackBar.open("Pedido eliminado con éxito", "", {duration: 1000});
+            this._snackBar.open("Pedido eliminado con éxito", "", {duration: 1000});
     });
   }
 }

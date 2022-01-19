@@ -6,7 +6,7 @@ export interface Pedido {
   titulo: string;
   precio: number;
   idUsuario: string;
-  id?: number;
+  _id?: string;
 }
 
 @Injectable({
@@ -33,21 +33,25 @@ export class PedidosService {
     return this.http.get<Pedido[]>(apiUrlPedidos);
   }
 
+  eliminarPedido(idPedido: string) {
+    let apiUrlPedidos = this.apiUrlBack + "pedidos/" + idPedido;
+    return this.http.delete<Pedido>(apiUrlPedidos);
+  }
 
   //APIS CON VIEJA URL
 
-  traerPedidosBaseDatos2(idUsuario: number) {
-    let urlConEndpoint = this.apiUrl + '?idUsuario=' + idUsuario;
+  // traerPedidosBaseDatos2(idUsuario: number) {
+  //   let urlConEndpoint = this.apiUrl + '?idUsuario=' + idUsuario;
 
-    return this.http.get<Pedido[]>(urlConEndpoint);
-  }
+  //   return this.http.get<Pedido[]>(urlConEndpoint);
+  // }
 
-  registrarPedido2(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(this.apiUrl, pedido);
-  }
+  // registrarPedido2(pedido: Pedido): Observable<Pedido> {
+  //   return this.http.post<Pedido>(this.apiUrl, pedido);
+  // }
 
-  eliminarPedido(idPedido: number) {
-    let apiUrlConId = this.apiUrl + '/' + idPedido;
-    return this.http.delete<Pedido>(apiUrlConId);
-  }
+  // eliminarPedido2(idPedido: number) {
+  //   let apiUrlConId = this.apiUrl + '/' + idPedido;
+  //   return this.http.delete<Pedido>(apiUrlConId);
+  // }
 }
