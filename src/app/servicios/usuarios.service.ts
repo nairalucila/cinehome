@@ -2,20 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
+import {UsuarioLogin, Usuarios} from '../models/usuarios';
 
-export interface Usuarios {
-  _id?: string;
-  nombreUsuario: string;
-  email: string;
-  contrasenia: string;
-  telefono: string;
-  rol: 'CLIENTE';
-}
-
-export interface UsuarioLogin {
-  email: string;
-  contrasenia: string;
-}
 
 @Injectable({
   providedIn: 'root',

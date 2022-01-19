@@ -1,30 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PeliculasService, Genero } from 'src/app/servicios/peliculas.service';
+import { PeliculasService } from 'src/app/servicios/peliculas.service';
+import { Genero, Peliculas, Detalles } from '../../models/peliculas';
 import { Pedido, PedidosService } from 'src/app/servicios/pedidos.service';
 
-interface PeliculaSeleccionada {
-  titulo: string;
-  cantidad: number;
-  precio: number;
-}
-
-interface Peliculas {
-  genre_ids: Genero;
-  id: number;
-  original_title: string;
-  poster_path: string;
-  vote_average: number;
-  vote_count: number;
-  precio?: number;
-}
-interface Detalles {
-  original_title: string;
-  genres?: Genero[];
-  overview: string;
-  poster_path: string;
-  vote_average: number;
-}
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',

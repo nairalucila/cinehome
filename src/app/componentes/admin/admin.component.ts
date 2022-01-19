@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuariosService, Usuarios } from 'src/app/servicios/usuarios.service';
+import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import {Usuarios} from '../../models/usuarios'
 
 @Component({
   selector: 'app-admin',

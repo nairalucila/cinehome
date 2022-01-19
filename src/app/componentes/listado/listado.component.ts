@@ -2,24 +2,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
-import { Genero, PeliculasService } from 'src/app/servicios/peliculas.service';
-import { MockapiService } from '../../servicios/mockapi.service';
+import { PeliculasService  } from 'src/app/servicios/peliculas.service';
+import {Genero, PeliculaSeleccionada, Peliculas} from '../../models/peliculas'
 import { MatSnackBar } from '@angular/material/snack-bar';
-interface PeliculaSeleccionada {
-  titulo: string;
-  cantidad: number;
-  precio: number;
-}
-
-interface Peliculas {
-  genre_ids: Genero;
-  id: number;
-  original_title: string;
-  poster_path: string;
-  vote_average: number;
-  vote_count: number;
-  precio?: number;
-}
 
 @Component({
   selector: 'app-listado',

@@ -7,7 +7,7 @@ export interface Usuarios {
     rol: 'CLIENTE';
   }
   
-//   export interface UsuarioLogin {
-//     email: string;
-//     contrasenia: string;
-//   }
+  export interface UsuarioLogin {
+    email: string;
+    contrasenia: string;
+  }

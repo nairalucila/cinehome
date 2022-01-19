@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Usuarios, UsuariosService } from '../../../servicios/usuarios.service';
+import { UsuariosService } from '../../../servicios/usuarios.service';
+import { UsuarioLogin, Usuarios}from '../../../models/usuarios';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-registro',
