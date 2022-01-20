@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,10 +21,12 @@ import { ListadoComponent } from './componentes/listado/listado.component';
 import { HomeComponent } from './vistas/home/home.component';
 import { NavbarComponent } from './vistas/navbar/navbar.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { PerfilComponent } from './componentes/perfil/perfil.component'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AdminComponent } from './componentes/admin/admin.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { HeaderInterceptorService } from './interceptores/header-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,29 +40,34 @@ import { AdminComponent } from './componentes/admin/admin.component';
     DetalleComponent,
     PerfilComponent,
     AdminComponent,
-    
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatCardModule,
-    MatInputModule, 
-  //  MatFormFieldModule,
+    MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     RouterModule,
     MatTableModule,
     MatDividerModule,
-   MatIconModule,
-   MatDialogModule,
-  ReactiveFormsModule,
-  HttpClientModule,
-  MatSnackBarModule
-  
+    MatIconModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
- // schemas: [ CUSTOM_ELEMENTS_SCHEMA]
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {}

@@ -15,6 +15,7 @@ export interface Peliculas {
   vote_average: number;
   vote_count: number;
   precio?: number;
+  stock?: number;
 }
 
 export interface Detalles {
@@ -23,4 +24,5 @@ export interface Detalles {
   overview: string;
   poster_path: string;
   vote_average: number;
+  stock?: number;
 }

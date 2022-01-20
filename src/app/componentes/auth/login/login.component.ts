@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { UsuarioLogin, Usuarios}from '../../../models/usuarios';
+import { UsuarioLogin, Usuarios } from '../../../models/usuarios';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
       .subscribe((usuario: any) => {
         if (usuario) {
           this.cookie.set('token', usuario.token);
+          this.cookie.set('rol', usuario.role);
+
+          //cookieService.set('test', 'Hello World', { expires: 2, sameSite: 'Lax' });
+
           localStorage.setItem('INITIALIZACION_IN', usuario._id);
           this.estaLogueado = true;
           let saveLS = this.estaLogueado.toString();

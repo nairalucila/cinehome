@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import {Pedido} from '../models/pedidos';
 
-export interface Pedido {
-  titulo: string;
-  precio: number;
-  idUsuario: string;
-  _id?: string;
-}
+// export interface Pedido {
+//   titulo: string;
+//   precio: number;
+//   idUsuario: string;
+//   _id?: string;
+// }
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,11 @@ export class PedidosService {
   constructor(private http: HttpClient) {}
 
   //APIS CON NUEVA URL
+
+  traerTodosPedidos(){
+    let apiUrlPedidos = this.apiUrlBack + "/api/pedidos";
+    return this.http.get<Pedido[]>(apiUrlPedidos);  
+  }
 
   registrarPedido(pedido: Pedido): Observable<Pedido> {
     let apiUrlPedidos = this.apiUrlBack + "pedidos";

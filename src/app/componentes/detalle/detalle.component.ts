@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PeliculasService } from 'src/app/servicios/peliculas.service';
 import { Genero, Peliculas, Detalles } from '../../models/peliculas';
-import { Pedido, PedidosService } from 'src/app/servicios/pedidos.service';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
+import { Pedido } from 'src/app/models/pedidos';
 
 @Component({
   selector: 'app-detalle',

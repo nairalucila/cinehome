@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Pedido } from 'src/app/models/pedidos';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import {Usuarios} from '../../models/usuarios'
+import { Usuarios } from '../../models/usuarios';
 
 @Component({
   selector: 'app-admin',
@@ -14,9 +16,12 @@ export class AdminComponent implements OnInit {
   idForDelete = new FormControl('');
   esInputVisible: boolean;
   listaUsuarios: Usuarios[] = [];
+  listaPedidos: Pedido[] = [];
+
   constructor(
     private usuarioService: UsuariosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private pedidoService: PedidosService
   ) {
     this.esInputVisible = false;
   }
@@ -29,12 +34,14 @@ export class AdminComponent implements OnInit {
       this.listaUsuarios = usuarios;
 
       for (let i = 0; i < usuarios.length; i++) {
-        
-      this.listaUsuarios[i]._id = usuarios[i]._id;
-        
+        this.listaUsuarios[i]._id = usuarios[i]._id;
       }
+    });
+  }
 
-
+  traerTodosPedidos() {
+    this.pedidoService.traerTodosPedidos().subscribe((pedidos: Pedido[]) => {
+      console.log(pedidos);
     });
   }
 
@@ -44,14 +51,13 @@ export class AdminComponent implements OnInit {
 
   sendValue(id: any) {
     this.esInputVisible = false;
-    
+
     let idValor = id.value;
     this.eliminarUsuario(idValor);
   }
 
   eliminarUsuario(id: string) {
     this.usuarioService.eliminarUsuario(id).subscribe((res) => {
-      
       this.snackBar.open('Usuario Eliminado con Éxito', 'OK', {
         duration: 1200,
       });
