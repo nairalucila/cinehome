@@ -1,19 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-export interface Genero {
-  id: number,
-  nombre: string,
-}
-
-interface Peliculas {
-  genre_ids: Genero;
-  id: number;
-  original_title: string;
-  poster_path: string;
-  vote_average: number;
-  vote_count: number;
-  precio?: number;
-}
+import { Peliculas, PeliculaSeleccionada, Genero} from '../models/peliculas';
 
 @Injectable({
   providedIn: 'root'

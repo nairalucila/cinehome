@@ -6,6 +6,8 @@ import { RegistroComponent } from './componentes/auth/registro/registro.componen
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
+import { AdminGuard } from './guard/admin.guard';
+import { Guard1Guard } from './guard/guard1.guard';
 
 
 
@@ -17,10 +19,10 @@ const appRoutes: Routes = [
   
   { path: 'home', component: ListadoComponent},
   
-  { path: 'carrito', component: CarritoComponent},
+  { path: 'carrito', component: CarritoComponent, canActivate: [Guard1Guard]},
   
   { path: 'detalle', component: DetalleComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent , canActivate: [AdminGuard]}
     
 ]
 

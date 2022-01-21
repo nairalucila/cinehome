@@ -1,25 +1,15 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
-import { Genero, PeliculasService } from 'src/app/servicios/peliculas.service';
-import { MockapiService } from '../../servicios/mockapi.service';
+import { PedidosService} from 'src/app/servicios/pedidos.service';
+import {Pedido} from '../../models/pedidos';
+import { PeliculasService } from 'src/app/servicios/peliculas.service';
+import {
+  Genero,
+  PeliculaSeleccionada,
+  Peliculas,
+} from '../../models/peliculas';
 import { MatSnackBar } from '@angular/material/snack-bar';
-interface PeliculaSeleccionada {
-  titulo: string;
-  cantidad: number;
-  precio: number;
-}
-
-interface Peliculas {
-  genre_ids: Genero;
-  id: number;
-  original_title: string;
-  poster_path: string;
-  vote_average: number;
-  vote_count: number;
-  precio?: number;
-}
 
 @Component({
   selector: 'app-listado',
@@ -40,7 +30,6 @@ export class ListadoComponent implements OnInit, OnChanges {
 
   idRegistroUsuario: string;
 
- 
   constructor(
     private router: Router,
     private pedidoService: PedidosService,
@@ -52,10 +41,10 @@ export class ListadoComponent implements OnInit, OnChanges {
     this.peliculaSeleccionadas = [];
     this.cantidadPeliculas = 0;
 
-    const idlocalstorage = localStorage.getItem('INITIALIZACION_IN')
-    if(!idlocalstorage) {
-    this.router.navigate(['/login']);
-      throw new Error('No se encuentra id')
+    const idlocalstorage = localStorage.getItem('INITIALIZACION_IN');
+    if (!idlocalstorage) {
+      this.router.navigate(['/login']);
+      throw new Error('No se encuentra id');
     }
 
     this.idRegistroUsuario = idlocalstorage;
@@ -68,9 +57,7 @@ export class ListadoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
     for (let i = 0; i <= 5; i++) {
-   
       this.peliculaService.obtenerPeliculas(i).subscribe((pelis: any) => {
         pelis.results.map((peli: Peliculas) => {
           this.listaPeliculas.push({
@@ -81,12 +68,12 @@ export class ListadoComponent implements OnInit, OnChanges {
             genre_ids: peli.genre_ids,
             vote_count: peli.vote_count,
             precio: peli.vote_count > 1000 ? 1270 : 965,
+            stock: 100,
           });
         });
       });
-
     }
-  };
+  }
 
   ngOnChanges(changes: SimpleChanges): void {}
 
@@ -104,14 +91,16 @@ export class ListadoComponent implements OnInit, OnChanges {
     this.pedidoService
       .registrarPedido(this.nuevoPedido)
       .subscribe((pedido: Pedido) => {
-        
         if (pedido) {
-          this._snackBar.open("Película agregada con éxito", "", {duration: 1000});
-          
+          this._snackBar.open('Película agregada con éxito', '', {
+            duration: 1000,
+          });
         } else {
-          this._snackBar.open("Error al agregar Película", "", {duration: 1000});
+          this._snackBar.open('Error al agregar Película', '', {
+            duration: 1000,
+          });
         }
+      });
 
-           });
   }
 }

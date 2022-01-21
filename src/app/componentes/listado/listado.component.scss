@@ -59,6 +59,11 @@
   mat-card-content{
     margin-top: 1rem;
   }
+  & h5{
+    font-size: 12px;
+    margin-right: 5px;
+    color: rgb(49, 45, 53);
+  }
 }
 
 .contenedor-stock-precio {
@@ -66,6 +71,8 @@
   justify-content: space-between;
   color: rgb(49, 51, 66);
 }
+
+
 
 @media (max-width: 600px) {
   .contenedor-listado {

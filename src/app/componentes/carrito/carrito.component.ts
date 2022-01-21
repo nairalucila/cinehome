@@ -5,9 +5,10 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { PedidosService, Pedido } from 'src/app/servicios/pedidos.service';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Pedido } from 'src/app/models/pedidos';
 
 // interface PeliculaSeleccionada {
 //   titulo: string;
