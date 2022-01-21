@@ -2,20 +2,17 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Guard1Guard implements CanActivate {
-  constructor(private router: Router) {}
-
-  //si es false te lo muestra en blanco.
-
+export class AdminGuard implements CanActivate {
+  constructor(private cookie: CookieService) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -24,13 +21,12 @@ export class Guard1Guard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    //debugger
-    let idUsuarioLogueado = localStorage.getItem('INITIALIZACION_IN');
-    if (!idUsuarioLogueado) {
-      this.router.navigate(['/home']);
-      return false;
-    } else {
+    let esAdmin = this.cookie.get('rol');
+
+    if (esAdmin === 'ADMIN') {
       return true;
+    } else {
+      return false;
     }
   }
 }
